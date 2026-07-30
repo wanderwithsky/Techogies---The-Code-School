@@ -30,9 +30,9 @@ export function Projects() {
         />
       </div>
 
-      {/* Sticky Scroll Region - Starts after fixed responsive spacing */}
-      <div ref={containerRef} className="relative mt-[clamp(64px,7vw,110px)]" style={{ height: "400vh" }}>
-        <div className="sticky top-0 flex h-screen w-full items-center justify-center overflow-hidden">
+      {/* Sticky Scroll Region - Starts directly after fixed spacing */}
+      <div ref={containerRef} className="relative mt-16 sm:mt-20 lg:mt-24" style={{ height: "400vh" }}>
+        <div className="sticky top-[12vh] flex h-[75vh] min-h-[550px] w-full justify-center lg:top-[15vh] lg:h-[480px] lg:min-h-0">
           
           {/* Project Cards */}
         {projects.map((project, i) => {
