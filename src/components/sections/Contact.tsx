@@ -155,13 +155,15 @@ export function Contact() {
                 <h3 className="text-lg font-semibold text-foreground">Varanasi</h3>
                 <p className="text-sm text-muted-foreground">UBI Building, Sigra, Varanasi, India</p>
               </div>
-              <div className="aspect-[16/10] w-full">
+              <div className="w-full h-[260px] sm:h-[320px] lg:h-[400px] overflow-hidden">
                 <iframe
                   title="Techogies location"
-                  src="https://www.google.com/maps?q=UBI+Building,+Sigra,+Varanasi,+India&output=embed"
-                  className="h-full w-full border-0"
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
+                  src="https://maps.google.com/maps?q=UBI%20Building,%20Sigra,%20Varanasi,%20India&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                  className="w-full h-full border-0"
+                  frameBorder="0"
+                  scrolling="no"
+                  marginHeight={0}
+                  marginWidth={0}
                 />
               </div>
               <div className="space-y-3 p-6 text-sm">

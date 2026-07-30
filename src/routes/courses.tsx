@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ThemeProvider } from "@/context/ThemeContext";
 import { EnrollProvider } from "@/context/EnrollContext";
 import { Toaster } from "sonner";
 import { Navbar } from "@/components/layout/Navbar";
@@ -39,8 +38,7 @@ export const Route = createFileRoute("/courses")({
 
 function CoursesRoute() {
   return (
-    <ThemeProvider>
-      <EnrollProvider>
+    <EnrollProvider>
         <CourseDetailsProvider>
           <ScrollProgress />
           <Navbar />
@@ -56,6 +54,5 @@ function CoursesRoute() {
           <CourseDetailsModal />
         </CourseDetailsProvider>
       </EnrollProvider>
-    </ThemeProvider>
   );
 }

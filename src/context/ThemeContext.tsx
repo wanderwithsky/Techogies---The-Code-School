@@ -7,17 +7,18 @@ const ThemeCtx = createContext<{ theme: Theme; toggle: () => void }>({
 });
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setTheme] = useState<Theme>("light");
-
-  useEffect(() => {
+  const [theme, setTheme] = useState<Theme>(() => {
+    if (typeof window === "undefined") return "light";
     const saved = localStorage.getItem("techogies-theme") as Theme | null;
-    const initial: Theme =
-      saved ?? (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
-    setTheme(initial);
-  }, []);
+    return saved ?? (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+  });
+
+  // Eagerly apply the class on the client to completely avoid FOUC
+  if (typeof window !== "undefined") {
+    document.documentElement.classList.toggle("dark", theme === "dark");
+  }
 
   useEffect(() => {
-    document.documentElement.classList.toggle("dark", theme === "dark");
     localStorage.setItem("techogies-theme", theme);
   }, [theme]);
 

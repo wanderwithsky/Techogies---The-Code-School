@@ -1,7 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { ArrowLeft, Calendar, GraduationCap, MapPin, Mic2, Building2, Users } from "lucide-react";
-import { ThemeProvider } from "@/context/ThemeContext";
 import { EnrollProvider, useEnroll } from "@/context/EnrollContext";
 import { Toaster } from "sonner";
 import { Navbar } from "@/components/layout/Navbar";
@@ -80,8 +79,7 @@ function StoryNotFound() {
 
 function StoryRoute() {
   return (
-    <ThemeProvider>
-      <EnrollProvider>
+    <EnrollProvider>
         <ScrollProgress />
         <Navbar />
         <main>
@@ -93,7 +91,6 @@ function StoryRoute() {
         <Toaster position="top-center" richColors />
         <EnrollModal />
       </EnrollProvider>
-    </ThemeProvider>
   );
 }
 

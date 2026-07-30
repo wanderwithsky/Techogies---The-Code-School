@@ -2,8 +2,10 @@ import { motion } from "framer-motion";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { scrollToId } from "@/lib/scroll";
+import { useRef } from "react";
 import { Workspace } from "@/components/hero-workspace/Workspace";
 import { HeroParticles } from "@/components/hero-particles/HeroParticles";
+import { CursorSparkle } from "@/components/effects/CursorSparkle";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -11,8 +13,11 @@ const fadeUp = {
 } as const;
 
 export function Hero() {
+  const heroRef = useRef<HTMLElement>(null);
+  
   return (
     <section
+      ref={heroRef}
       id="home"
       className="relative min-h-screen overflow-hidden bg-[oklch(0.14_0.01_40)]"
     >
@@ -31,6 +36,8 @@ export function Hero() {
           }}
         />
       </div>
+
+      <CursorSparkle containerRef={heroRef} />
 
       <div className="relative z-10 mx-auto grid min-h-screen max-w-[1400px] grid-cols-1 items-center gap-12 px-5 pt-28 pb-20 lg:grid-cols-[42%_58%] lg:gap-10 lg:px-8 lg:pt-24 xl:pr-6">
         {/* Left column */}

@@ -1,8 +1,38 @@
 [
-  { "title": "Food Delivery App", "stack": "React · Node · MongoDB", "image": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1000&q=80" },
-  { "title": "Hospital Management", "stack": "Next.js · Postgres", "image": "https://images.unsplash.com/photo-1584982751601-97dcc096659c?w=1000&q=80" },
-  { "title": "CRM Dashboard", "stack": "React · Tailwind · REST", "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1000&q=80" },
-  { "title": "Portfolio Website", "stack": "React · Framer Motion", "image": "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=1000&q=80" },
-  { "title": "Cyber Security Toolkit", "stack": "Python · Kali Linux", "image": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1000&q=80" },
-  { "title": "Analytics Dashboard", "stack": "Power BI · SQL · Python", "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1000&q=80" }
+  { 
+    "title": "School LMS System", 
+    "stack": "React • Node.js • MongoDB", 
+    "description": "A production-ready School Learning Management System used by real educational institutions to manage students, teachers, attendance, examinations, fees, assignments, notices, and academic records from a single dashboard.",
+    "features": ["Student Management", "Attendance Management", "Exam & Result System"],
+    "tags": ["React", "Node.js", "MongoDB", "JWT", "Express", "Cloudinary"],
+    "stats": ["40+ MODULES", "5000+ STUDENTS"],
+    "image": "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=1000&q=80" 
+  },
+  { 
+    "title": "Hospital Management", 
+    "stack": "Next.js · Postgres", 
+    "description": "An enterprise-grade patient management system streamlining appointment scheduling, electronic medical records (EMR), and doctor availability rosters.",
+    "features": ["Patient Portal", "Role-based Access", "Email Reminders", "Secure EMR"],
+    "tags": ["Next.js", "PostgreSQL", "Prisma", "TailwindCSS", "TypeScript"],
+    "stats": ["4 User Roles", "HIPAA Compliant", "Sub-second Load"],
+    "image": "https://images.unsplash.com/photo-1584982751601-97dcc096659c?w=1000&q=80" 
+  },
+  { 
+    "title": "CRM Dashboard", 
+    "stack": "React · Tailwind · REST", 
+    "description": "A comprehensive B2B Customer Relationship Management dashboard with data visualization, sales pipelines, and automated reporting generation.",
+    "features": ["Data Visualization", "Sales Pipeline", "Report Export", "Dark Mode"],
+    "tags": ["React", "Tailwind", "Recharts", "Express", "JWT"],
+    "stats": ["Interactive Charts", "PDF Generation", "Responsive"],
+    "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1000&q=80" 
+  },
+  { 
+    "title": "E-Commerce Platform", 
+    "stack": "React • Node.js • MongoDB", 
+    "description": "A production-ready multi-vendor e-commerce platform featuring secure authentication, product management, shopping cart, online payments, order tracking, and a powerful admin dashboard for managing inventory and customers.",
+    "features": ["Product Management", "Secure Payments", "Order Tracking"],
+    "tags": ["React", "Node.js", "Express", "MongoDB", "JWT", "Stripe", "Cloudinary"],
+    "stats": ["30+ SCREENS", "15k+ ORDERS"],
+    "image": "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=1000&q=80" 
+  }
 ]

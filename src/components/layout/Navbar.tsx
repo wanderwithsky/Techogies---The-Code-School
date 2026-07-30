@@ -27,7 +27,7 @@ export function Navbar() {
     : activeSection;
   const router = useRouter();
   const headerRef = useRef<HTMLElement>(null);
-  const isTop = !scrolled && !openMenu;
+  const isTop = isHome && !scrolled && !openMenu;
   const { openEnroll } = useEnroll();
 
   useEffect(() => {
@@ -78,7 +78,7 @@ export function Navbar() {
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-all duration-300",
         "border-b",
-        scrolled || openMenu
+        !isTop
           ? "bg-background/70 backdrop-blur-xl backdrop-saturate-150 border-border/60 shadow-[0_8px_30px_-12px_rgba(0,0,0,0.35)]"
           : "bg-black/[0.12] backdrop-blur-[12px] border-transparent text-white"
       )}
