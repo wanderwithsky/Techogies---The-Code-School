@@ -1,6 +1,6 @@
 [
-  { "name": "Akash Bhattacharya", "photo": "/__l5e/assets-v1/d6794e27-572d-481b-bba3-07cf631340e2/akash-bhattacharya.png", "exp": "4+ yrs", "spec": "Full Stack • AI", "linkedin": "https://www.linkedin.com/in/akash--bhattacharya" },
-  { "name": "Akash Singh", "photo": "/__l5e/assets-v1/19cb1495-cb5f-4f1e-87ce-18a68c08e450/akash-singh.png", "exp": "7+ yrs", "spec": "Cyber Security • Ethical Hacking", "linkedin": "https://www.linkedin.com/in/akash-singh-83b053218/" },
-  { "name": "Satyajit Biswas", "photo": "/__l5e/assets-v1/6b5e425b-dcf6-4d50-9853-5328396606a9/satyajit-biswas.jpg", "exp": "12+ yrs", "spec": "Software Architecture • Cloud Computing • DevOps", "linkedin": "https://linkedin.com" },
-  { "name": "Jitendra Dubey", "photo": "/__l5e/assets-v1/902c3400-e011-4090-8db7-a01c22963363/jitendra-dubey.jpg", "exp": "12+ yrs", "spec": "Frontend Architecture", "linkedin": "https://linkedin.com" }
+  { "name": "Akash Bhattacharya", "photo": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&q=80", "exp": "4+ yrs", "spec": "Full Stack • AI", "linkedin": "https://www.linkedin.com/in/akash--bhattacharya" },
+  { "name": "Akash Singh", "photo": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80", "exp": "7+ yrs", "spec": "Cyber Security • Ethical Hacking", "linkedin": "https://www.linkedin.com/in/akash-singh-83b053218/" },
+  { "name": "Satyajit Biswas", "photo": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80", "exp": "12+ yrs", "spec": "Software Architecture • Cloud Computing • DevOps", "linkedin": "https://linkedin.com" },
+  { "name": "Jitendra Dubey", "photo": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80", "exp": "12+ yrs", "spec": "Frontend Architecture", "linkedin": "https://linkedin.com" }
 ]
