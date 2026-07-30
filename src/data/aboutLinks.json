@@ -1,0 +1,30 @@
+[
+  {
+    "id": "who",
+    "label": "Who We Are",
+    "description": "Learn about Techogies and our journey.",
+    "icon": "Users",
+    "target": "why"
+  },
+  {
+    "id": "mission",
+    "label": "Our Mission & Vision",
+    "description": "Our purpose and long-term goals.",
+    "icon": "Target",
+    "target": "why"
+  },
+  {
+    "id": "values",
+    "label": "Our Core Values",
+    "description": "The principles behind everything we build.",
+    "icon": "Heart",
+    "target": "why"
+  },
+  {
+    "id": "contact",
+    "label": "Contact Us",
+    "description": "Reach out to our team.",
+    "icon": "Mail",
+    "target": "contact"
+  }
+]

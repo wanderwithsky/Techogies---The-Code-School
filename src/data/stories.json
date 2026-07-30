@@ -1,0 +1,138 @@
+[
+  {
+    "id": "campus-seminar",
+    "slug": "campus-seminar",
+    "title": "Campus Seminar: Igniting Software Careers",
+    "subtitle": "Helping hundreds of students explore real-world software development careers.",
+    "coverImage": "/__l5e/assets-v1/66a2ad03-000e-4011-aeb0-e809ce645360/impact-01.jpeg",
+    "galleryImages": [
+      "/__l5e/assets-v1/66a2ad03-000e-4011-aeb0-e809ce645360/impact-01.jpeg",
+      "/__l5e/assets-v1/ddfe8581-ee22-4f7f-8765-c42eea339407/impact-03.jpeg",
+      "/__l5e/assets-v1/ebcbb3c3-3f6c-4218-af09-3544128841d1/impact-02.png",
+      "/__l5e/assets-v1/9d11815d-680a-49cb-8ad1-10a0599a395c/impact-04.jpeg"
+    ],
+    "category": "Seminar",
+    "date": "August 2025",
+    "location": "Varanasi, India",
+    "college": "UBI Auditorium, Sigra",
+    "speaker": "Akash Bhattacharya",
+    "attendees": "300+ students",
+    "story": [
+      "The Techogies Campus Seminar was hosted at the UBI Auditorium in Sigra, Varanasi — a landmark event that brought together more than three hundred aspiring engineers, designers and problem-solvers under one roof. The room was buzzing well before the session started; students had travelled from multiple colleges across the region, laptops in hand, curious about what a modern software career actually looks like.",
+      "The seminar was organised with a very specific mission: to close the widening gap between what colleges teach and what the industry now hires for. Most students told us they had learned syntax, but had never shipped anything real. We wanted to change that story in a single afternoon.",
+      "The session opened with a candid walkthrough of the developer landscape in 2025 — the rise of full-stack roles, the merging of design and engineering, the impact of AI on daily workflows, and the skills that hiring managers now filter for on the very first call. We then moved into live demonstrations covering React, modern backend design, deployment on the edge, and how professional teams collaborate using Git, code reviews and CI pipelines.",
+      "The most memorable part was the Q&A. Students asked sharp, honest questions — about internships, imposter syndrome, salary expectations, how to build a portfolio without an internship, and how to stay relevant as AI tools evolve. Every question got a straight, unfiltered answer. Several students later told us it was the first time a technical session had felt like a real conversation instead of a lecture."
+    ],
+    "highlights": [
+      "300+ students attended across multiple colleges",
+      "Live walkthrough of a production React + Node stack",
+      "Portfolio and resume guidance from working engineers",
+      "Career roadmap covering Full Stack, AI and Cyber Security tracks",
+      "Open Q&A with industry mentors",
+      "On-the-spot mentorship sign-ups for interested students"
+    ],
+    "quote": "Our mission is to bridge the gap between academic learning and industry-ready skills."
+  },
+  {
+    "id": "cyber-security-session",
+    "slug": "cyber-security-session",
+    "title": "Cyber Security Awareness Session",
+    "subtitle": "A hands-on awareness session on digital safety, organised by Techogies.",
+    "coverImage": "/__l5e/assets-v1/ebcbb3c3-3f6c-4218-af09-3544128841d1/impact-02.png",
+    "galleryImages": [
+      "/__l5e/assets-v1/ebcbb3c3-3f6c-4218-af09-3544128841d1/impact-02.png",
+      "/__l5e/assets-v1/9d11815d-680a-49cb-8ad1-10a0599a395c/impact-04.jpeg",
+      "/__l5e/assets-v1/66a2ad03-000e-4011-aeb0-e809ce645360/impact-01.jpeg",
+      "/__l5e/assets-v1/ddfe8581-ee22-4f7f-8765-c42eea339407/impact-03.jpeg"
+    ],
+    "category": "Workshop",
+    "date": "September 2025",
+    "location": "Varanasi, India",
+    "college": "Community Auditorium",
+    "speaker": "Akash Singh",
+    "attendees": "250+ students & faculty",
+    "story": [
+      "In an era where a single click can compromise an entire household, the Techogies Cyber Security Awareness Session was designed to make students, parents and faculty genuinely safer online — not just informed. The hall filled up quickly, and by the time the opening slide appeared, every seat was taken.",
+      "The workshop began with real, recent case studies from India: OTP frauds, fake job offer scams, phishing links disguised as courier updates, and the alarming rise of 'digital arrest' scams targeting families. Watching how quickly a well-crafted message can pressure someone into transferring money left the audience visibly shaken — and much more attentive.",
+      "We then moved into a live demonstration. Students saw how attackers profile a target using nothing but public information, how weak passwords are cracked in seconds, and how a hardware key or a properly configured authenticator app instantly changes the equation. Ethical hacking was framed the right way — as a career, a mindset and a responsibility, not a shortcut.",
+      "The session closed with a clear, printable checklist that every attendee could apply the same evening: strong unique passwords, 2FA everywhere, verifying senders, freezing credit inquiries, and how to react in the first ten minutes if something does go wrong. Several teachers requested a follow-up session for their students' families."
+    ],
+    "highlights": [
+      "Real case studies of Indian phishing and OTP frauds",
+      "Live demonstration of ethical hacking techniques",
+      "Practical 2FA and password hygiene walkthrough",
+      "Digital arrest scam awareness segment",
+      "Career pathways in offensive and defensive security",
+      "Personal safety checklist distributed to every attendee"
+    ],
+    "quote": "Security is not a feature you install — it is a habit you build."
+  },
+  {
+    "id": "career-guidance",
+    "slug": "career-guidance",
+    "title": "Career Guidance & Placement Mentorship",
+    "subtitle": "Mentorship sessions preparing students for placements and interviews.",
+    "coverImage": "/__l5e/assets-v1/ddfe8581-ee22-4f7f-8765-c42eea339407/impact-03.jpeg",
+    "galleryImages": [
+      "/__l5e/assets-v1/ddfe8581-ee22-4f7f-8765-c42eea339407/impact-03.jpeg",
+      "/__l5e/assets-v1/66a2ad03-000e-4011-aeb0-e809ce645360/impact-01.jpeg",
+      "/__l5e/assets-v1/ebcbb3c3-3f6c-4218-af09-3544128841d1/impact-02.png",
+      "/__l5e/assets-v1/9d11815d-680a-49cb-8ad1-10a0599a395c/impact-04.jpeg"
+    ],
+    "category": "Mentorship",
+    "date": "October 2025",
+    "location": "Varanasi, India",
+    "college": "Partner Women's College",
+    "speaker": "Techogies Mentor Panel",
+    "attendees": "180+ final-year students",
+    "story": [
+      "This session was built entirely around one question we hear from final-year students every week: 'What do I actually do next?' Instead of a generic motivational talk, the Techogies mentor panel walked into the room with a plan — resumes, portfolios, interview questions and honest feedback.",
+      "The morning started with a structured resume clinic. Students submitted their CVs the previous week, and mentors returned them in class with clear, line-by-line comments. Common issues surfaced almost immediately: buzzwords with no evidence, missing links to projects, and no clear story about impact. Fixing these turned average resumes into interview-worthy ones on the spot.",
+      "Mock interviews followed. Students paired up with mentors for short technical rounds — data structures, JavaScript fundamentals, SQL, and a quick system-design sketch. The feedback loop was tight: attempt, review, retry. By the second round, the improvement in confidence was visible across the room.",
+      "The session wrapped up with a roadmap tailored to different tracks — Full Stack, Data, and Security — and a shortlist of open internships the students could apply to that week. Several attendees followed up within days with offer letters and internship confirmations, which is the real measure of a session like this."
+    ],
+    "highlights": [
+      "One-on-one resume reviews with working engineers",
+      "Mock technical interviews with immediate feedback",
+      "Portfolio and GitHub audit for every student",
+      "Track-specific roadmaps: Full Stack, Data, Security",
+      "Curated shortlist of live internship openings",
+      "Multiple offer letters received within two weeks"
+    ],
+    "quote": "A great resume doesn't get you the job — a great story about your work does."
+  },
+  {
+    "id": "digital-arrest-talk",
+    "slug": "digital-arrest-talk",
+    "title": "Tech Community Meetup",
+    "subtitle": "Connecting aspiring developers with mentors and industry professionals.",
+    "coverImage": "/__l5e/assets-v1/9d11815d-680a-49cb-8ad1-10a0599a395c/impact-04.jpeg",
+    "galleryImages": [
+      "/__l5e/assets-v1/9d11815d-680a-49cb-8ad1-10a0599a395c/impact-04.jpeg",
+      "/__l5e/assets-v1/ebcbb3c3-3f6c-4218-af09-3544128841d1/impact-02.png",
+      "/__l5e/assets-v1/66a2ad03-000e-4011-aeb0-e809ce645360/impact-01.jpeg",
+      "/__l5e/assets-v1/ddfe8581-ee22-4f7f-8765-c42eea339407/impact-03.jpeg"
+    ],
+    "category": "Meetup",
+    "date": "November 2025",
+    "location": "Varanasi, India",
+    "college": "Public Community Hall",
+    "speaker": "Akash Bhattacharya",
+    "attendees": "400+ attendees",
+    "story": [
+      "The Techogies Tech Community Meetup was our largest public gathering of the year — an open, no-ticket evening built around one idea: put learners and working professionals in the same room and let real conversations happen. Over four hundred people showed up, from first-year students to senior engineers.",
+      "The keynote focused on 'Digital Arrest' — a fast-growing category of cyber-enabled financial fraud that has hit families across the country. We broke down exactly how the scam works, why it succeeds, and the specific verbal and visual cues that give it away. Several attendees said they recognised a call their own relative had received the previous month.",
+      "After the keynote, the room broke into open circles — Full Stack, AI, Cyber Security, and Career Switch. Mentors moved between circles answering everything from 'how do I start' to 'how do I negotiate my first offer'. The energy was closer to a community festival than a formal talk.",
+      "We closed with a live demo of a small production project built end-to-end during the session, followed by giveaways and a group photo. The follow-up was even better: dozens of attendees joined the Techogies mentorship program in the days that followed, and several formed their own study groups that are still meeting weekly."
+    ],
+    "highlights": [
+      "400+ attendees from students to senior engineers",
+      "Keynote on Digital Arrest and modern cyber fraud",
+      "Open mentorship circles across four tracks",
+      "Live end-to-end product demo",
+      "New study groups formed on the spot",
+      "Dozens of mentorship program sign-ups afterwards"
+    ],
+    "quote": "The fastest way to grow as a developer is to sit in a room with people better than you — and ask better questions."
+  }
+]

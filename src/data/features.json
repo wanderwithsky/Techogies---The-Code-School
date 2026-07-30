@@ -1,0 +1,14 @@
+[
+  { "icon": "Hammer", "title": "Project Based Learning", "desc": "Learn by building real products, not just watching lectures." },
+  { "icon": "Video", "title": "Live Classes", "desc": "Interactive live sessions with expert instructors, five days a week." },
+  { "icon": "PlayCircle", "title": "Recorded Lectures", "desc": "Never miss a class. Rewatch, revise, and revisit any time." },
+  { "icon": "Users", "title": "Industry Mentors", "desc": "1:1 guidance from engineers at top product companies." },
+  { "icon": "Briefcase", "title": "Placement Assistance", "desc": "Dedicated placement cell working until you land the offer." },
+  { "icon": "GraduationCap", "title": "Internship Opportunities", "desc": "Real internship experience with live client projects." },
+  { "icon": "Compass", "title": "Career Guidance", "desc": "Personal roadmap tailored to your goals and background." },
+  { "icon": "FileText", "title": "Resume Building", "desc": "ATS-optimized resumes crafted with recruiter insights." },
+  { "icon": "MessageSquare", "title": "Mock Interviews", "desc": "Real interview drills with instant, actionable feedback." },
+  { "icon": "Infinity", "title": "Lifetime Community", "desc": "Join an active alumni network of builders and hirers." },
+  { "icon": "Award", "title": "Certificates", "desc": "Industry-recognized certification upon successful completion." },
+  { "icon": "Sparkles", "title": "AI Powered Learning", "desc": "Personalized practice, doubt-solving, and revision with AI." }
+]

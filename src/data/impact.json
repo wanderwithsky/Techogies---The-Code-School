@@ -1,0 +1,38 @@
+[
+  {
+    "id": "campus-seminar",
+    "image": "/__l5e/assets-v1/66a2ad03-000e-4011-aeb0-e809ce645360/impact-01.jpeg",
+    "title": "Campus Seminar",
+    "subtitle": "Helping hundreds of students explore real-world software development careers.",
+    "category": "Seminar",
+    "location": "India",
+    "year": "2025"
+  },
+  {
+    "id": "cyber-security-session",
+    "image": "/__l5e/assets-v1/ebcbb3c3-3f6c-4218-af09-3544128841d1/impact-02.png",
+    "title": "Cyber Security Session",
+    "subtitle": "Awareness session on digital safety, organised by Techogies.",
+    "category": "Workshop",
+    "location": "India",
+    "year": "2025"
+  },
+  {
+    "id": "career-guidance",
+    "image": "/__l5e/assets-v1/ddfe8581-ee22-4f7f-8765-c42eea339407/impact-03.jpeg",
+    "title": "Career Guidance",
+    "subtitle": "Mentorship sessions preparing students for placements and interviews.",
+    "category": "Mentorship",
+    "location": "India",
+    "year": "2025"
+  },
+  {
+    "id": "digital-arrest-talk",
+    "image": "/__l5e/assets-v1/9d11815d-680a-49cb-8ad1-10a0599a395c/impact-04.jpeg",
+    "title": "Tech Community Meetup",
+    "subtitle": "Connecting aspiring developers with mentors and industry professionals.",
+    "category": "Meetup",
+    "location": "India",
+    "year": "2025"
+  }
+]

@@ -1,0 +1,50 @@
+{
+  "fullstack": {
+    "description": "A career-focused program that takes you from your first line of HTML to shipping production-ready web apps. Perfect for beginners and career switchers who want to become job-ready Full Stack Developers. You will build real, portfolio-grade projects — dashboards, e-commerce apps, and SaaS tools — and graduate ready for Full Stack, MERN, and Software Engineer roles.",
+    "technologies": ["HTML", "CSS", "JavaScript", "React", "Node.js", "Express.js", "MongoDB", "PostgreSQL", "TypeScript", "Git", "GitHub", "REST APIs", "Docker"],
+    "learningPoints": ["Web Fundamentals", "Hands-on Projects", "Modern React & TypeScript", "Backend APIs with Node.js", "Databases & Deployment", "Industry Best Practices", "Resume Building", "Interview Preparation", "Career Guidance"],
+    "duration": "6 Months",
+    "mode": "Online Live",
+    "level": "Beginner to Advanced"
+  },
+  "frontend": {
+    "description": "A focused frontend program for aspiring UI engineers who want to build fast, beautiful, and accessible web experiences. You will master modern React, TypeScript, and Tailwind, and ship real responsive apps that look and feel like Vercel, Linear, and Stripe. Ideal for Frontend Developer and UI Engineer roles.",
+    "technologies": ["HTML", "CSS", "JavaScript", "TypeScript", "React", "Next.js", "Tailwind CSS", "Framer Motion", "Git", "GitHub"],
+    "learningPoints": ["Modern HTML, CSS & JS", "Responsive Design", "React & Next.js in Depth", "Component Architecture", "Real-world Assignments", "Performance & Accessibility", "Resume Building", "Interview Preparation"],
+    "duration": "12 Weeks",
+    "mode": "Online Live",
+    "level": "Beginner Friendly"
+  },
+  "backend": {
+    "description": "An intensive backend program for developers who want to design scalable APIs and services. You will build authentication systems, REST & realtime APIs, and production-ready backends with Node.js, PostgreSQL, and Docker. Ideal for Backend, API, and Node.js Developer roles.",
+    "technologies": ["Node.js", "Express.js", "TypeScript", "PostgreSQL", "MongoDB", "Redis", "REST APIs", "Docker", "Git", "Linux"],
+    "learningPoints": ["API Design & REST", "Authentication & Security", "Databases & Query Optimisation", "Caching & Queues", "Docker & Deployment", "Real-world Assignments", "Resume Building", "Interview Preparation"],
+    "duration": "16 Weeks",
+    "mode": "Online Live",
+    "level": "Intermediate"
+  },
+  "cyber": {
+    "description": "A hands-on Cyber Security program covering ethical hacking, penetration testing, and SOC workflows. You will work inside real vulnerable labs, learn attacker and defender mindsets, and prepare for high-demand roles in Security Analysis, Pen Testing, and SOC.",
+    "technologies": ["Networking", "Linux", "Kali Linux", "Ethical Hacking", "Burp Suite", "Nmap", "Wireshark", "Metasploit", "OWASP", "Web Security", "Python"],
+    "learningPoints": ["Networking & Linux Fundamentals", "Ethical Hacking Techniques", "Web & API Security (OWASP)", "Penetration Testing Labs", "SOC & Incident Response", "Real-world Case Studies", "Resume Building", "Interview Preparation"],
+    "duration": "6 Months",
+    "mode": "Hybrid",
+    "level": "Intermediate to Advanced"
+  },
+  "ai": {
+    "description": "A modern AI & Machine Learning program for developers ready to ship real ML and LLM-powered products. You will train models with PyTorch, build RAG apps with LangChain, and deploy AI features to production. Ideal for ML Engineer, AI Engineer, and Applied Scientist roles.",
+    "technologies": ["Python", "NumPy", "Pandas", "PyTorch", "scikit-learn", "Hugging Face", "LangChain", "OpenAI APIs", "SQL", "Git"],
+    "learningPoints": ["Python for ML", "Classical ML & Deep Learning", "LLMs, RAG & Agents", "Model Deployment", "Real-world Projects", "MLOps Fundamentals", "Resume Building", "Interview Preparation"],
+    "duration": "6 Months",
+    "mode": "Online Live",
+    "level": "Intermediate"
+  },
+  "devops": {
+    "description": "A practical DevOps program that turns you into the engineer teams rely on to ship reliably. You will automate CI/CD pipelines, containerise apps with Docker, orchestrate with Kubernetes, and manage infrastructure with Terraform on AWS. Ideal for DevOps Engineer, SRE, and Platform Engineer roles.",
+    "technologies": ["Linux", "Git", "GitHub Actions", "Docker", "Kubernetes", "AWS", "Terraform", "Nginx", "Bash", "Monitoring"],
+    "learningPoints": ["Linux & Shell Scripting", "CI/CD Pipelines", "Docker & Kubernetes", "Infrastructure as Code", "AWS Cloud Fundamentals", "Monitoring & Reliability", "Resume Building", "Interview Preparation"],
+    "duration": "4 Months",
+    "mode": "Recorded",
+    "level": "Intermediate"
+  }
+}

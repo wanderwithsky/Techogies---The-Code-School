@@ -1,0 +1,7 @@
+[
+  { "value": 500, "suffix": "+", "label": "Students Trained" },
+  { "value": 120, "suffix": "+", "label": "Placements" },
+  { "value": 40, "suffix": "+", "label": "Hiring Partners" },
+  { "value": 95, "suffix": "%", "label": "Course Completion" },
+  { "value": 4.9, "suffix": "★", "label": "Average Rating", "decimals": 1 }
+]

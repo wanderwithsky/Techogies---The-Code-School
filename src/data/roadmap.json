@@ -1,0 +1,10 @@
+[
+  { "step": "01", "title": "Enroll", "desc": "Pick your track and lock in your seat." },
+  { "step": "02", "title": "Live Classes", "desc": "Attend live sessions with expert mentors." },
+  { "step": "03", "title": "Assignments", "desc": "Hands-on assignments after every module." },
+  { "step": "04", "title": "Projects", "desc": "Ship 6+ real-world portfolio projects." },
+  { "step": "05", "title": "Internship", "desc": "Work on live client engagements." },
+  { "step": "06", "title": "Resume Building", "desc": "Craft a recruiter-ready ATS resume." },
+  { "step": "07", "title": "Mock Interviews", "desc": "Practice with real hiring managers." },
+  { "step": "08", "title": "Placement", "desc": "Get placed with our 40+ hiring partners." }
+]

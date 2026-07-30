@@ -1,0 +1,129 @@
+{
+  "learningPaths": [
+    "Full Stack Development",
+    "Frontend Development",
+    "Backend Development",
+    "Cyber Security",
+    "AI & Machine Learning",
+    "DevOps"
+  ],
+  "difficulties": [
+    "Beginner",
+    "Intermediate",
+    "Advanced"
+  ],
+  "durationBuckets": [
+    {
+      "id": "u2",
+      "label": "Under 2 Months",
+      "min": 0,
+      "max": 2
+    },
+    {
+      "id": "2to4",
+      "label": "2 \u2013 4 Months",
+      "min": 2,
+      "max": 4
+    },
+    {
+      "id": "4to6",
+      "label": "4 \u2013 6 Months",
+      "min": 4,
+      "max": 6
+    },
+    {
+      "id": "6plus",
+      "label": "6+ Months",
+      "min": 6,
+      "max": 999
+    }
+  ],
+  "modes": [
+    "Online Live",
+    "Recorded",
+    "Hybrid"
+  ],
+  "technologies": [
+    "React",
+    "Node.js",
+    "Express",
+    "MongoDB",
+    "PostgreSQL",
+    "Python",
+    "Java",
+    "Docker",
+    "AWS",
+    "Next.js",
+    "TypeScript",
+    "SQL",
+    "Git",
+    "Kubernetes",
+    "Terraform",
+    "Tailwind",
+    "React Native",
+    "Figma",
+    "PyTorch",
+    "LangChain",
+    "Linux",
+    "Firebase"
+  ],
+  "sortOptions": [
+    {
+      "value": "popular",
+      "label": "Most Popular"
+    },
+    {
+      "value": "newest",
+      "label": "Newest"
+    },
+    {
+      "value": "duration",
+      "label": "Duration (shortest)"
+    },
+    {
+      "value": "priceAsc",
+      "label": "Price: Low to High"
+    },
+    {
+      "value": "priceDesc",
+      "label": "Price: High to Low"
+    }
+  ],
+  "priceRange": {
+    "min": 0,
+    "max": 60000,
+    "step": 1000
+  },
+  "whyChoose": [
+    {
+      "iconName": "Users",
+      "title": "Industry Mentors",
+      "description": "Learn directly from engineers actively shipping at product companies."
+    },
+    {
+      "iconName": "Rocket",
+      "title": "Live Projects",
+      "description": "Build production-grade projects with real users, real deadlines."
+    },
+    {
+      "iconName": "Briefcase",
+      "title": "Placement Assistance",
+      "description": "Dedicated placement cell with 250+ hiring partners across India."
+    },
+    {
+      "iconName": "GraduationCap",
+      "title": "Internship Opportunities",
+      "description": "Structured internships with product teams during and after the program."
+    },
+    {
+      "iconName": "Compass",
+      "title": "Career Guidance",
+      "description": "1:1 mentorship, roadmaps, and resume reviews from senior engineers."
+    },
+    {
+      "iconName": "MessageSquare",
+      "title": "Mock Interviews",
+      "description": "Practice DSA, system design and HR rounds with real hiring managers."
+    }
+  ]
+}

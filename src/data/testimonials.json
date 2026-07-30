@@ -1,0 +1,8 @@
+[
+  { "name": "Aarav Sharma", "photo": "https://i.pravatar.cc/200?img=12", "course": "Full Stack Development", "company": "Infosys", "package": "8.5 LPA", "rating": 5, "review": "Techogies transformed me from a fresher to a confident developer. The live projects and mentorship made all the difference." },
+  { "name": "Priya Verma", "photo": "https://i.pravatar.cc/200?img=47", "course": "Data Analytics", "company": "Deloitte", "package": "9.2 LPA", "rating": 5, "review": "The placement cell is truly relentless. I appeared for 6 interviews within a month of finishing the course." },
+  { "name": "Rahul Iyer", "photo": "https://i.pravatar.cc/200?img=33", "course": "Cyber Security", "company": "IBM", "package": "11 LPA", "rating": 5, "review": "Hands-on labs, real CTFs, and mentors who actually work in the industry. Absolutely worth every rupee." },
+  { "name": "Sneha Kapoor", "photo": "https://i.pravatar.cc/200?img=25", "course": "Frontend Development", "company": "Capgemini", "package": "6.8 LPA", "rating": 5, "review": "The UI, projects, and community are top-notch. I built a portfolio I'm genuinely proud of." },
+  { "name": "Vikram Nair", "photo": "https://i.pravatar.cc/200?img=52", "course": "Backend Development", "company": "TCS", "package": "7.4 LPA", "rating": 4, "review": "Structured curriculum with real production patterns. The mock interviews were a game changer." },
+  { "name": "Ishita Roy", "photo": "https://i.pravatar.cc/200?img=44", "course": "Full Stack Development", "company": "Accenture", "package": "8 LPA", "rating": 5, "review": "From zero coding experience to a full-time offer in 7 months. Thank you Techogies." }
+]

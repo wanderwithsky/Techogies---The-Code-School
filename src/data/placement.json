@@ -1,0 +1,9 @@
+[
+  { "icon": "FileText", "title": "Resume Building" },
+  { "icon": "Linkedin", "title": "LinkedIn Optimization" },
+  { "icon": "MessageSquare", "title": "Mock Interviews" },
+  { "icon": "Code2", "title": "Coding Preparation" },
+  { "icon": "UserCheck", "title": "HR Preparation" },
+  { "icon": "CalendarCheck", "title": "Interview Scheduling" },
+  { "icon": "FileCheck", "title": "Offer Letter Assistance" }
+]

@@ -1,0 +1,58 @@
+.footer-brand-section {
+  position: relative;
+  overflow: hidden;
+  padding: 4rem 0;
+}
+@media (min-width: 640px) { .footer-brand-section { padding: 6rem 0; } }
+@media (min-width: 1024px) { .footer-brand-section { padding: 8rem 0; } }
+
+.footer-brand-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  cursor: crosshair;
+}
+
+.footer-brand-text {
+  font-family: "Sora", ui-sans-serif, system-ui, sans-serif;
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  font-size: 200px;
+  text-transform: none;
+  user-select: none;
+}
+
+.footer-brand-outline {
+  fill: transparent;
+  stroke: rgba(0, 0, 0, 0.22);
+  stroke-width: 1.2;
+  paint-order: stroke;
+}
+.dark .footer-brand-outline {
+  stroke: rgba(255, 255, 255, 0.16);
+  stroke-width: 1.4;
+}
+
+.footer-brand-glow-group {
+  opacity: var(--spot-reveal, 0);
+  transition: opacity 400ms ease-out;
+  will-change: opacity;
+}
+
+@keyframes footerBrandGradientShift {
+  0%   { transform: translateX(-8%); }
+  50%  { transform: translateX(8%); }
+  100% { transform: translateX(-8%); }
+}
+
+.footer-brand-anim-grad {
+  animation: footerBrandGradientShift 9s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .footer-brand-glow-group { display: none; }
+  .footer-brand-anim-grad { animation: none; }
+}
