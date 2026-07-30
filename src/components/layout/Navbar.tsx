@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { ChevronDown, Menu, Moon, Sun, X } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 import { Link, useRouter, useRouterState } from "@tanstack/react-router";
 import nav from "@/data/nav.json";
 import site from "@/data/site.json";
@@ -36,6 +36,31 @@ export function Navbar() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  const { scrollY } = useScroll();
+  const [hidden, setHidden] = useState(false);
+  const lastYRef = useRef(0);
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    if (latest < 50) {
+      setHidden(false);
+      lastYRef.current = latest;
+      return;
+    }
+
+    const diff = latest - lastYRef.current;
+
+    // Scrolling down (ignore small jitters < 20px)
+    if (diff > 20) {
+      setHidden(true);
+      lastYRef.current = latest;
+    } 
+    // Scrolling up (instant reveal, low threshold)
+    else if (diff < -5) {
+      setHidden(false);
+      lastYRef.current = latest;
+    }
+  });
 
   // Close menu on outside click / ESC / scroll
   useEffect(() => {
@@ -73,10 +98,16 @@ export function Navbar() {
   };
 
   return (
-    <header
+    <motion.header
       ref={headerRef}
+      variants={{
+        visible: { y: 0, opacity: 1 },
+        hidden: { y: "-100%", opacity: 0.95 }
+      }}
+      animate={hidden ? "hidden" : "visible"}
+      transition={{ ease: [0.22, 1, 0.36, 1], duration: 0.3 }}
       className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-all duration-300",
+        "fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,box-shadow,backdrop-filter] duration-300",
         "border-b",
         !isTop
           ? "bg-background/70 backdrop-blur-xl backdrop-saturate-150 border-border/60 shadow-[0_8px_30px_-12px_rgba(0,0,0,0.35)]"
@@ -197,7 +228,7 @@ export function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </motion.header>
   );
 }
 
