@@ -4,12 +4,12 @@
     "slug": "campus-seminar",
     "title": "Campus Seminar: Igniting Software Careers",
     "subtitle": "Helping hundreds of students explore real-world software development careers.",
-    "coverImage": "/__l5e/assets-v1/66a2ad03-000e-4011-aeb0-e809ce645360/impact-01.jpeg",
+    "coverImage": "/impact/01.jpeg",
     "galleryImages": [
-      "/__l5e/assets-v1/66a2ad03-000e-4011-aeb0-e809ce645360/impact-01.jpeg",
-      "/__l5e/assets-v1/ddfe8581-ee22-4f7f-8765-c42eea339407/impact-03.jpeg",
-      "/__l5e/assets-v1/ebcbb3c3-3f6c-4218-af09-3544128841d1/impact-02.png",
-      "/__l5e/assets-v1/9d11815d-680a-49cb-8ad1-10a0599a395c/impact-04.jpeg"
+      "/impact/01.jpeg",
+      "/impact/03.jpeg",
+      "/impact/02.png",
+      "/impact/04.jpeg"
     ],
     "category": "Seminar",
     "date": "August 2025",
@@ -38,12 +38,12 @@
     "slug": "cyber-security-session",
     "title": "Cyber Security Awareness Session",
     "subtitle": "A hands-on awareness session on digital safety, organised by Techogies.",
-    "coverImage": "/__l5e/assets-v1/ebcbb3c3-3f6c-4218-af09-3544128841d1/impact-02.png",
+    "coverImage": "/impact/02.png",
     "galleryImages": [
-      "/__l5e/assets-v1/ebcbb3c3-3f6c-4218-af09-3544128841d1/impact-02.png",
-      "/__l5e/assets-v1/9d11815d-680a-49cb-8ad1-10a0599a395c/impact-04.jpeg",
-      "/__l5e/assets-v1/66a2ad03-000e-4011-aeb0-e809ce645360/impact-01.jpeg",
-      "/__l5e/assets-v1/ddfe8581-ee22-4f7f-8765-c42eea339407/impact-03.jpeg"
+      "/impact/02.png",
+      "/impact/04.jpeg",
+      "/impact/01.jpeg",
+      "/impact/03.jpeg"
     ],
     "category": "Workshop",
     "date": "September 2025",
@@ -72,12 +72,12 @@
     "slug": "career-guidance",
     "title": "Career Guidance & Placement Mentorship",
     "subtitle": "Mentorship sessions preparing students for placements and interviews.",
-    "coverImage": "/__l5e/assets-v1/ddfe8581-ee22-4f7f-8765-c42eea339407/impact-03.jpeg",
+    "coverImage": "/impact/03.jpeg",
     "galleryImages": [
-      "/__l5e/assets-v1/ddfe8581-ee22-4f7f-8765-c42eea339407/impact-03.jpeg",
-      "/__l5e/assets-v1/66a2ad03-000e-4011-aeb0-e809ce645360/impact-01.jpeg",
-      "/__l5e/assets-v1/ebcbb3c3-3f6c-4218-af09-3544128841d1/impact-02.png",
-      "/__l5e/assets-v1/9d11815d-680a-49cb-8ad1-10a0599a395c/impact-04.jpeg"
+      "/impact/03.jpeg",
+      "/impact/01.jpeg",
+      "/impact/02.png",
+      "/impact/04.jpeg"
     ],
     "category": "Mentorship",
     "date": "October 2025",
@@ -106,12 +106,12 @@
     "slug": "digital-arrest-talk",
     "title": "Tech Community Meetup",
     "subtitle": "Connecting aspiring developers with mentors and industry professionals.",
-    "coverImage": "/__l5e/assets-v1/9d11815d-680a-49cb-8ad1-10a0599a395c/impact-04.jpeg",
+    "coverImage": "/impact/04.jpeg",
     "galleryImages": [
-      "/__l5e/assets-v1/9d11815d-680a-49cb-8ad1-10a0599a395c/impact-04.jpeg",
-      "/__l5e/assets-v1/ebcbb3c3-3f6c-4218-af09-3544128841d1/impact-02.png",
-      "/__l5e/assets-v1/66a2ad03-000e-4011-aeb0-e809ce645360/impact-01.jpeg",
-      "/__l5e/assets-v1/ddfe8581-ee22-4f7f-8765-c42eea339407/impact-03.jpeg"
+      "/impact/04.jpeg",
+      "/impact/02.png",
+      "/impact/01.jpeg",
+      "/impact/03.jpeg"
     ],
     "category": "Meetup",
     "date": "November 2025",

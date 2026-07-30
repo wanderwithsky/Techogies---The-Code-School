@@ -1,7 +1,7 @@
 [
   {
     "id": "campus-seminar",
-    "image": "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=800&q=80",
+    "image": "/impact/01.jpeg",
     "title": "Campus Seminar",
     "subtitle": "Helping hundreds of students explore real-world software development careers.",
     "category": "Seminar",
@@ -10,7 +10,7 @@
   },
   {
     "id": "cyber-security-session",
-    "image": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80",
+    "image": "/impact/02.png",
     "title": "Cyber Security Session",
     "subtitle": "Awareness session on digital safety, organised by Techogies.",
     "category": "Workshop",
@@ -19,7 +19,7 @@
   },
   {
     "id": "career-guidance",
-    "image": "https://images.unsplash.com/photo-1515169067868-5387ec356754?auto=format&fit=crop&w=800&q=80",
+    "image": "/impact/03.jpeg",
     "title": "Career Guidance",
     "subtitle": "Mentorship sessions preparing students for placements and interviews.",
     "category": "Mentorship",
@@ -28,7 +28,7 @@
   },
   {
     "id": "digital-arrest-talk",
-    "image": "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=800&q=80",
+    "image": "/impact/04.jpeg",
     "title": "Tech Community Meetup",
     "subtitle": "Connecting aspiring developers with mentors and industry professionals.",
     "category": "Meetup",
