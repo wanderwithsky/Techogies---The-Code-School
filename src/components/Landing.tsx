@@ -31,9 +31,9 @@ export function Landing() {
         <Stats />
         <WhyUs />
         <Roadmap />
+        <Partners />
         <Projects />
         <CareerPaths />
-        <Partners />
         <Testimonials />
         <ImpactSection />
         <Mentors />
