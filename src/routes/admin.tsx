@@ -14,6 +14,7 @@ import {
   LogOut,
   Menu,
   MessageCircle,
+  Phone,
 } from "lucide-react";
 
 // In a real production app, we would use Tanstack Router's beforeLoad for auth checking
@@ -93,6 +94,7 @@ function AdminSidebar() {
     { title: "Students", href: "/admin/students", icon: Users },
     { title: "Enrollments", href: "/admin/enrollments", icon: GraduationCap },
     { title: "Enquiries", href: "/admin/enquiries", icon: MessageSquare },
+    { title: "Callbacks", href: "/admin/callbacks", icon: Phone },
     { title: "Projects", href: "/admin/projects", icon: Briefcase },
     { title: "Mentors", href: "/admin/mentors", icon: Award },
     { title: "Testimonials", href: "/admin/testimonials", icon: MessageCircle },

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { toast } from "sonner";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -15,6 +16,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import type { Course } from "./types";
+import { submitCallbackRequest } from "@/lib/callback.functions";
 
 const schema = z.object({
   fullName: z.string().trim().min(2, "Enter your full name").max(80),
@@ -60,10 +62,19 @@ export function CallbackSection({ courses }: { courses: Course[] }) {
     },
   });
 
-  const onSubmit = async (_values: FormValues) => {
-    await new Promise((r) => setTimeout(r, 600));
-    setSubmitted(true);
-    reset();
+  const onSubmit = async (values: FormValues) => {
+    try {
+      const res = await submitCallbackRequest({ data: values });
+      if (!res.ok) {
+        toast.error(res.error || "Failed to submit request.");
+        return;
+      }
+      setSubmitted(true);
+      reset();
+    } catch (error) {
+      console.error(error);
+      toast.error("An unexpected error occurred.");
+    }
   };
 
   return (

@@ -10,7 +10,6 @@ import { FiltersSheet } from "./FiltersSheet";
 import { SortBar } from "./SortBar";
 import { CourseGrid } from "./CourseGrid";
 import { EmptyState } from "./EmptyState";
-import { WhyChooseTechogies } from "./WhyChooseTechogies";
 import { CallbackSection } from "./CallbackSection";
 import { InfoBanner } from "./InfoBanner";
 import { StillConfused } from "./StillConfused";
@@ -102,7 +101,7 @@ export function CoursesPage() {
       createdAt: c.created_at,
       durationMonths: parseInt(c.duration) || 6,
       careerGoals: [],
-      learningPath: c.category || "General"
+      learningPath: c.category || c.title || "General"
     }));
   }, [dbCourses]);
 
@@ -122,7 +121,14 @@ export function CoursesPage() {
           .toLowerCase();
         if (!haystack.includes(q)) return false;
       }
-      if (filters.learningPaths.length && !filters.learningPaths.includes(c.learningPath)) return false;
+      if (filters.learningPaths.length) {
+        const coursePath = (c.learningPath || "").toLowerCase().replace(/[^a-z0-9]/g, "");
+        const matches = filters.learningPaths.some((lp) => {
+          const filterPath = lp.toLowerCase().replace(/[^a-z0-9]/g, "");
+          return filterPath.includes(coursePath) || coursePath.includes(filterPath);
+        });
+        if (!matches) return false;
+      }
       if (filters.difficulty && !c.difficulty.toLowerCase().includes(filters.difficulty.toLowerCase())) return false;
       if (filters.durationBuckets.length) {
         const matches = filters.durationBuckets.some((id) => {
@@ -131,10 +137,6 @@ export function CoursesPage() {
         });
         if (!matches) return false;
       }
-      if (filters.modes.length && !filters.modes.includes(c.mode)) return false;
-      if (filters.placement && !c.placement) return false;
-      if (filters.internship && !c.internship) return false;
-      if (filters.certificate && !c.certificate) return false;
       if (filters.technologies.length) {
         const has = filters.technologies.every((t) => c.technologies.includes(t));
         if (!has) return false;
@@ -197,7 +199,6 @@ export function CoursesPage() {
         </div>
       </section>
 
-      <WhyChooseTechogies />
       <CallbackSection courses={courses} />
       <StillConfused />
 
@@ -216,10 +217,6 @@ function countActive(f: Filters) {
     f.learningPaths.length +
     (f.difficulty ? 1 : 0) +
     f.durationBuckets.length +
-    f.modes.length +
-    (f.placement ? 1 : 0) +
-    (f.internship ? 1 : 0) +
-    (f.certificate ? 1 : 0) +
     f.technologies.length
   );
 }

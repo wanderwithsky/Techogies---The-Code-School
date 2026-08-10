@@ -45,8 +45,38 @@ function AdminEnrollmentsPage() {
     setLoading(false);
   }
 
-  async function updateStatus(id: string, newStatus: string) {
-    await supabase.from("enrollments").update({ status: newStatus }).eq("id", id);
+  async function updateStatus(enrollment: any, newStatus: string) {
+    await supabase.from("enrollments").update({ status: newStatus }).eq("id", enrollment.id);
+
+    if (newStatus === "Converted") {
+      // Check if student exists
+      const { data: existingStudent } = await supabase
+        .from("students")
+        .select("*")
+        .or(`email.eq.${enrollment.email},phone.eq.${enrollment.phone}`)
+        .limit(1)
+        .single();
+
+      if (!existingStudent) {
+        // Create new student
+        await supabase.from("students").insert({
+          name: enrollment.student_name,
+          email: enrollment.email,
+          phone: enrollment.phone,
+          city: enrollment.city,
+          qualification: enrollment.qualification,
+          latest_course: enrollment.course_name,
+          status: "Active",
+        });
+      } else {
+        // Update existing student with latest info
+        await supabase.from("students").update({
+          latest_course: enrollment.course_name || existingStudent.latest_course,
+          city: enrollment.city || existingStudent.city,
+          qualification: enrollment.qualification || existingStudent.qualification,
+        }).eq("id", existingStudent.id);
+      }
+    }
   }
 
   async function updatePaymentStatus(id: string, newStatus: string) {
@@ -62,6 +92,7 @@ function AdminEnrollmentsPage() {
   const statusColors: Record<string, string> = {
     "New": "bg-blue-500/10 text-blue-500",
     "Contacted": "bg-yellow-500/10 text-yellow-500",
+    "Converted": "bg-emerald-500/10 text-emerald-500",
     "Enrolled": "bg-green-500/10 text-green-500",
     "Active": "bg-emerald-500/10 text-emerald-500",
     "Completed": "bg-purple-500/10 text-purple-500",
@@ -125,11 +156,12 @@ function AdminEnrollmentsPage() {
                     <td className="p-4 align-middle">
                       <select 
                         value={enrollment.status}
-                        onChange={(e) => updateStatus(enrollment.id, e.target.value)}
+                        onChange={(e) => updateStatus(enrollment, e.target.value)}
                         className={`text-xs font-semibold rounded-full px-2.5 py-1 border-none focus:ring-2 focus:ring-ring ${statusColors[enrollment.status] || "bg-secondary text-secondary-foreground"}`}
                       >
                         <option value="New">New</option>
                         <option value="Contacted">Contacted</option>
+                        <option value="Converted">Converted</option>
                         <option value="Enrolled">Enrolled</option>
                         <option value="Active">Active</option>
                         <option value="Completed">Completed</option>

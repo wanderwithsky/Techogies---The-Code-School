@@ -45,8 +45,38 @@ function AdminEnquiriesPage() {
     setLoading(false);
   }
 
-  async function updateStatus(id: string, newStatus: string) {
-    await supabase.from("enquiries").update({ status: newStatus }).eq("id", id);
+  async function updateStatus(enquiry: any, newStatus: string) {
+    await supabase.from("enquiries").update({ status: newStatus }).eq("id", enquiry.id);
+
+    if (newStatus === "Converted") {
+      // Check if student exists
+      const { data: existingStudent } = await supabase
+        .from("students")
+        .select("*")
+        .or(`email.eq.${enquiry.email},phone.eq.${enquiry.phone}`)
+        .limit(1)
+        .single();
+
+      if (!existingStudent) {
+        // Create new student
+        await supabase.from("students").insert({
+          name: enquiry.name,
+          email: enquiry.email,
+          phone: enquiry.phone,
+          city: enquiry.city,
+          qualification: enquiry.qualification,
+          latest_course: enquiry.course,
+          status: "Active",
+        });
+      } else {
+        // Update existing student with latest info (optional, but good practice)
+        await supabase.from("students").update({
+          latest_course: enquiry.course || existingStudent.latest_course,
+          city: enquiry.city || existingStudent.city,
+          qualification: enquiry.qualification || existingStudent.qualification,
+        }).eq("id", existingStudent.id);
+      }
+    }
   }
 
   async function deleteEnquiry(id: string) {
@@ -120,7 +150,7 @@ function AdminEnquiriesPage() {
                     <td className="p-4 align-middle">
                       <select 
                         value={enquiry.status}
-                        onChange={(e) => updateStatus(enquiry.id, e.target.value)}
+                        onChange={(e) => updateStatus(enquiry, e.target.value)}
                         className={`text-xs font-semibold rounded-full px-2.5 py-1 border-none focus:ring-2 focus:ring-ring ${statusColors[enquiry.status] || "bg-secondary text-secondary-foreground"}`}
                       >
                         <option value="New">New</option>

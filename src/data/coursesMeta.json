@@ -106,11 +106,6 @@
       "description": "Build production-grade projects with real users, real deadlines."
     },
     {
-      "iconName": "Briefcase",
-      "title": "Placement Assistance",
-      "description": "Dedicated placement cell with 250+ hiring partners across India."
-    },
-    {
       "iconName": "GraduationCap",
       "title": "Internship Opportunities",
       "description": "Structured internships with product teams during and after the program."
@@ -119,11 +114,6 @@
       "iconName": "Compass",
       "title": "Career Guidance",
       "description": "1:1 mentorship, roadmaps, and resume reviews from senior engineers."
-    },
-    {
-      "iconName": "MessageSquare",
-      "title": "Mock Interviews",
-      "description": "Practice DSA, system design and HR rounds with real hiring managers."
     }
   ]
 }

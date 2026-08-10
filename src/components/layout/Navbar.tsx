@@ -73,12 +73,17 @@ export function Navbar() {
       if (e.key === "Escape") setOpenMenu(null);
     };
     const onScroll = () => setOpenMenu(null);
+    
+    const onCloseMobile = () => setOpen(false);
+
     document.addEventListener("pointerdown", onDown);
     document.addEventListener("keydown", onKey);
+    document.addEventListener("close-mobile-menu", onCloseMobile);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => {
       document.removeEventListener("pointerdown", onDown);
       document.removeEventListener("keydown", onKey);
+      document.removeEventListener("close-mobile-menu", onCloseMobile);
       window.removeEventListener("scroll", onScroll);
     };
   }, [openMenu]);
@@ -86,14 +91,25 @@ export function Navbar() {
   const go = (id: string) => {
     setOpen(false);
     setOpenMenu(null);
+    
     if (!isHome) {
-      router.navigate({ to: "/", hash: id === "home" ? undefined : id });
+      router.navigate({ to: "/" }).then(() => {
+        setTimeout(() => {
+          if (id === "home") {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          } else {
+            scrollToId(id);
+          }
+        }, 100);
+      });
       return;
     }
+    
     if (id === "home") {
       window.scrollTo({ top: 0, behavior: "smooth" });
       return;
     }
+    
     scrollToId(id);
   };
 
@@ -298,7 +314,7 @@ function NavListItem({
     return (
       <li className="relative">
         {item.href ? (
-          <Link to={item.href} onClick={() => go(item.id)} className={linkClass}>
+          <Link to={item.href} onClick={() => { setOpenMenu(null); document.dispatchEvent(new Event("close-mobile-menu")); }} className={linkClass}>
             {pillAndLabel}
           </Link>
         ) : (

@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { supabase } from "../../lib/supabase";
-import { Users, BookOpen, MessageSquare, GraduationCap } from "lucide-react";
+import { BookOpen, MessageSquare, GraduationCap, Phone, Users } from "lucide-react";
 
 export const Route = createFileRoute("/admin/")({
   component: AdminDashboardHome,
@@ -10,25 +10,28 @@ export const Route = createFileRoute("/admin/")({
 function AdminDashboardHome() {
   const [stats, setStats] = useState({
     enquiries: 0,
-    students: 0,
+    callbacks: 0,
     courses: 0,
     enrollments: 0,
+    students: 0,
   });
 
   useEffect(() => {
     async function fetchStats() {
-      const [enquiriesRes, studentsRes, coursesRes, enrollmentsRes] = await Promise.all([
+      const [enquiriesRes, callbacksRes, coursesRes, enrollmentsRes, studentsRes] = await Promise.all([
         supabase.from("enquiries").select("id", { count: "exact", head: true }),
-        supabase.from("enrollments").select("id", { count: "exact", head: true }), // Assuming students and enrollments are similar for now
+        supabase.from("callback_requests").select("id", { count: "exact", head: true }),
         supabase.from("courses").select("id", { count: "exact", head: true }),
         supabase.from("enrollments").select("id", { count: "exact", head: true }),
+        supabase.from("students").select("id", { count: "exact", head: true }),
       ]);
 
       setStats({
         enquiries: enquiriesRes.count || 0,
-        students: studentsRes.count || 0, 
+        callbacks: callbacksRes.count || 0, 
         courses: coursesRes.count || 0,
         enrollments: enrollmentsRes.count || 0,
+        students: studentsRes.count || 0,
       });
     }
 
@@ -37,9 +40,10 @@ function AdminDashboardHome() {
 
   const statCards = [
     { title: "Total Enquiries", value: stats.enquiries, icon: MessageSquare, color: "text-blue-500", bg: "bg-blue-500/10" },
+    { title: "Callback Requests", value: stats.callbacks, icon: Phone, color: "text-purple-500", bg: "bg-purple-500/10" },
     { title: "Active Courses", value: stats.courses, icon: BookOpen, color: "text-orange-500", bg: "bg-orange-500/10" },
     { title: "Total Enrollments", value: stats.enrollments, icon: GraduationCap, color: "text-green-500", bg: "bg-green-500/10" },
-    { title: "Total Students", value: stats.students, icon: Users, color: "text-purple-500", bg: "bg-purple-500/10" },
+    { title: "Total Students", value: stats.students, icon: Users, color: "text-indigo-500", bg: "bg-indigo-500/10" },
   ];
 
   return (
@@ -51,7 +55,7 @@ function AdminDashboardHome() {
         </p>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-5">
         {statCards.map((stat, i) => (
           <div key={i} className="rounded-xl border bg-card text-card-foreground shadow-sm p-6 flex flex-col justify-between">
             <div className="flex items-center justify-between space-y-0 pb-2">

@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as CoursesRouteImport } from './routes/courses'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
+import { Route as AdminCallbacksRouteImport } from './routes/admin/callbacks'
 import { Route as AdminCoursesRouteImport } from './routes/admin/courses'
 import { Route as AdminEnquiriesRouteImport } from './routes/admin/enquiries'
 import { Route as AdminEnrollmentsRouteImport } from './routes/admin/enrollments'
@@ -40,6 +41,11 @@ const CoursesRoute = CoursesRouteImport.update({
 const AdminIndexRoute = AdminIndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminCallbacksRoute = AdminCallbacksRouteImport.update({
+  id: '/callbacks',
+  path: '/callbacks',
   getParentRoute: () => AdminRoute,
 } as any)
 const AdminCoursesRoute = AdminCoursesRouteImport.update({
@@ -87,6 +93,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminRouteWithChildren
   '/courses': typeof CoursesRoute
+  '/admin/callbacks': typeof AdminCallbacksRoute
   '/admin/courses': typeof AdminCoursesRoute
   '/admin/enquiries': typeof AdminEnquiriesRoute
   '/admin/enrollments': typeof AdminEnrollmentsRoute
@@ -100,6 +107,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/courses': typeof CoursesRoute
+  '/admin/callbacks': typeof AdminCallbacksRoute
   '/admin/courses': typeof AdminCoursesRoute
   '/admin/enquiries': typeof AdminEnquiriesRoute
   '/admin/enrollments': typeof AdminEnrollmentsRoute
@@ -115,6 +123,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/admin': typeof AdminRouteWithChildren
   '/courses': typeof CoursesRoute
+  '/admin/callbacks': typeof AdminCallbacksRoute
   '/admin/courses': typeof AdminCoursesRoute
   '/admin/enquiries': typeof AdminEnquiriesRoute
   '/admin/enrollments': typeof AdminEnrollmentsRoute
@@ -131,6 +140,7 @@ export interface FileRouteTypes {
     | '/'
     | '/admin'
     | '/courses'
+    | '/admin/callbacks'
     | '/admin/courses'
     | '/admin/enquiries'
     | '/admin/enrollments'
@@ -144,6 +154,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/courses'
+    | '/admin/callbacks'
     | '/admin/courses'
     | '/admin/enquiries'
     | '/admin/enrollments'
@@ -158,6 +169,7 @@ export interface FileRouteTypes {
     | '/'
     | '/admin'
     | '/courses'
+    | '/admin/callbacks'
     | '/admin/courses'
     | '/admin/enquiries'
     | '/admin/enrollments'
@@ -204,6 +216,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/admin/'
       preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/callbacks': {
+      id: '/admin/callbacks'
+      path: '/callbacks'
+      fullPath: '/admin/callbacks'
+      preLoaderRoute: typeof AdminCallbacksRouteImport
       parentRoute: typeof AdminRoute
     }
     '/admin/courses': {
@@ -266,6 +285,7 @@ declare module '@tanstack/react-router' {
 }
 
 interface AdminRouteChildren {
+  AdminCallbacksRoute: typeof AdminCallbacksRoute
   AdminCoursesRoute: typeof AdminCoursesRoute
   AdminEnquiriesRoute: typeof AdminEnquiriesRoute
   AdminEnrollmentsRoute: typeof AdminEnrollmentsRoute
@@ -277,6 +297,7 @@ interface AdminRouteChildren {
 }
 
 const AdminRouteChildren: AdminRouteChildren = {
+  AdminCallbacksRoute: AdminCallbacksRoute,
   AdminCoursesRoute: AdminCoursesRoute,
   AdminEnquiriesRoute: AdminEnquiriesRoute,
   AdminEnrollmentsRoute: AdminEnrollmentsRoute,

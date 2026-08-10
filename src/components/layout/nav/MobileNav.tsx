@@ -19,7 +19,15 @@ export function MobileNav({
   const go = (id: string) => {
     onNavigate();
     if (!isHome) {
-      router.navigate({ to: "/", hash: id === "home" ? undefined : id });
+      router.navigate({ to: "/" }).then(() => {
+        setTimeout(() => {
+          if (id === "home") {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          } else {
+            scrollToId(id);
+          }
+        }, 100);
+      });
       return;
     }
     if (id === "home") {

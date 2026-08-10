@@ -3,8 +3,7 @@ import type { Dispatch } from "react";
 import meta from "@/data/coursesMeta.json";
 import { Checkbox } from "@/components/ui/checkbox";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Switch } from "@/components/ui/switch";
-import { Slider } from "@/components/ui/slider";
+
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
 import type { Filters } from "./types";
@@ -107,45 +106,7 @@ export function FiltersPanel({
         </div>
       </FilterGroup>
 
-      <FilterGroup title="Mode">
-        <div className="space-y-2.5">
-          {meta.modes.map((m) => (
-            <div key={m} className="flex items-center gap-2.5">
-              <Checkbox
-                id={`m-${m}`}
-                checked={filters.modes.includes(m)}
-                onCheckedChange={() => dispatch({ type: "toggleArray", key: "modes", value: m })}
-              />
-              <Label htmlFor={`m-${m}`} className="cursor-pointer text-sm font-normal text-foreground/90">
-                {m}
-              </Label>
-            </div>
-          ))}
-        </div>
-      </FilterGroup>
 
-      <FilterGroup title="Support">
-        <div className="space-y-3">
-          {(
-            [
-              ["placement", "Placement Included"],
-              ["internship", "Internship Included"],
-              ["certificate", "Certificate Included"],
-            ] as const
-          ).map(([key, label]) => (
-            <div key={key} className="flex items-center justify-between gap-3">
-              <Label htmlFor={`sw-${key}`} className="cursor-pointer text-sm font-normal text-foreground/90">
-                {label}
-              </Label>
-              <Switch
-                id={`sw-${key}`}
-                checked={filters[key] as boolean}
-                onCheckedChange={(v) => dispatch({ type: "patch", value: { [key]: v } as Partial<Filters> })}
-              />
-            </div>
-          ))}
-        </div>
-      </FilterGroup>
 
       <FilterGroup title="Technologies">
         <div className="flex flex-wrap gap-1.5">

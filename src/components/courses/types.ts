@@ -31,10 +31,6 @@ export type Filters = {
   learningPaths: string[];
   difficulty: string | null;
   durationBuckets: string[];
-  modes: string[];
-  placement: boolean;
-  internship: boolean;
-  certificate: boolean;
   technologies: string[];
   sort: string;
 };
@@ -44,10 +40,6 @@ export const defaultFilters = (): Filters => ({
   learningPaths: [],
   difficulty: null,
   durationBuckets: [],
-  modes: [],
-  placement: false,
-  internship: false,
-  certificate: false,
   technologies: [],
   sort: "popular",
 });
