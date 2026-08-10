@@ -1,6 +1,7 @@
 [
   { "id": "home", "label": "Home", "type": "link", "href": "/" },
   { "id": "courses", "label": "Courses", "type": "link", "href": "/courses" },
+  { "id": "mentors", "label": "Mentors", "type": "link" },
   { "id": "testimonials", "label": "Testimonials", "type": "link" },
   { "id": "contact", "label": "Contact", "type": "link" }
 ]

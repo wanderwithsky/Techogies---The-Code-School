@@ -33,7 +33,63 @@ export function CourseDetailsModal() {
     };
   }, [course, close]);
 
-  const detail = course ? detailMap[course.id] : null;
+  let derivedDuration = course?.duration || "6 Months";
+  let derivedMode = course?.mode || "Online Live";
+  let derivedLevel = course?.level || course?.difficulty || "All Levels";
+  let derivedLearningPoints = (course as any)?.curriculum && (course as any).curriculum.length > 0 
+    ? (course as any).curriculum 
+    : ((course as any)?.features && (course as any).features.length > 0 ? (course as any).features : ["Comprehensive industry curriculum"]);
+
+  if (course) {
+    const title = course.title.toLowerCase();
+    if (title.includes("frontend")) {
+      derivedDuration = "3 Months";
+      derivedMode = "Offline";
+      derivedLevel = "All Levels";
+      derivedLearningPoints = [
+        "Modern responsive web development",
+        "React and component architecture",
+        "API integration",
+        "State management",
+        "Production-ready frontend deployment"
+      ];
+    } else if (title.includes("backend")) {
+      derivedDuration = "3 Months";
+      derivedMode = "Offline";
+      derivedLevel = "All Levels";
+      derivedLearningPoints = [
+        "Node.js backend development",
+        "REST API architecture",
+        "PostgreSQL/MongoDB",
+        "Authentication and authorization",
+        "Deployment and scalable backend practices"
+      ];
+    } else if (title.includes("full stack") || title.includes("fullstack")) {
+      derivedDuration = "6 Months";
+      derivedMode = "Offline";
+      derivedLevel = "All Levels";
+      derivedLearningPoints = [
+        "Complete frontend + backend development",
+        "React application architecture",
+        "Node.js and API development",
+        "Database design",
+        "Authentication",
+        "Deployment and production workflows"
+      ];
+    }
+  }
+
+  const detail = course 
+    ? detailMap[course.id] || {
+        description: (course as any).fullDescription || course.shortDescription || "Course details coming soon.",
+        technologies: course.technologies || [],
+        learningPoints: derivedLearningPoints,
+        duration: derivedDuration,
+        mode: derivedMode,
+        level: derivedLevel,
+      }
+    : null;
+
 
   const whatsappHref = course
     ? `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(
@@ -103,11 +159,11 @@ export function CourseDetailsModal() {
               </div>
 
               <Section title="Technologies Covered">
-                <div className="flex flex-wrap gap-1.5">
+                <div className="flex flex-wrap gap-2">
                   {detail.technologies.map((t) => (
                     <span
                       key={t}
-                      className="rounded-full border border-border/60 bg-background/60 px-3 py-1 text-xs font-medium text-foreground/90 transition hover:border-primary/50 hover:text-primary"
+                      className="rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-xs font-semibold text-primary transition hover:border-primary/50 hover:bg-primary/20"
                     >
                       {t}
                     </span>
@@ -129,18 +185,20 @@ export function CourseDetailsModal() {
               </Section>
             </div>
 
-            <div className="border-t border-border/60 bg-background/70 px-6 py-4 backdrop-blur sm:px-8">
-              <a
-                href={whatsappHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group inline-flex w-full items-center justify-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-semibold text-background transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary hover:text-primary-foreground hover:shadow-[0_12px_30px_-10px_hsl(var(--primary)/0.6)] sm:w-auto sm:min-w-[220px]"
-              >
-                <MessageCircle size={16} className="transition-transform group-hover:scale-110" />
-                Download Syllabus
-              </a>
-              <p className="mt-2 text-center text-[11px] text-muted-foreground sm:text-left">
-                Opens WhatsApp — our team will share the full syllabus PDF.
+            <div className="border-t border-border/60 bg-background/70 px-6 py-5 backdrop-blur sm:px-8">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-start">
+                <a
+                  href={whatsappHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-all duration-300 hover:bg-primary/90 hover:shadow-[0_8px_30px_-10px_hsl(var(--primary)/0.6)] sm:w-auto"
+                >
+                  <MessageCircle size={16} />
+                  Download Syllabus
+                </a>
+              </div>
+              <p className="mt-4 text-center text-xs text-muted-foreground sm:text-left">
+                Get the complete curriculum, batch details and admission guidance on WhatsApp.
               </p>
             </div>
           </motion.div>

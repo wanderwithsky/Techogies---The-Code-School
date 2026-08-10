@@ -1,10 +1,32 @@
 [
-  { "step": "01", "title": "Enroll", "desc": "Pick your track and lock in your seat." },
-  { "step": "02", "title": "Live Classes", "desc": "Attend live sessions with expert mentors." },
-  { "step": "03", "title": "Assignments", "desc": "Hands-on assignments after every module." },
-  { "step": "04", "title": "Projects", "desc": "Ship 6+ real-world portfolio projects." },
-  { "step": "05", "title": "Internship", "desc": "Work on live client engagements." },
-  { "step": "06", "title": "Resume Building", "desc": "Craft a recruiter-ready ATS resume." },
-  { "step": "07", "title": "Mock Interviews", "desc": "Practice with real hiring managers." },
-  { "step": "08", "title": "Placement", "desc": "Get placed with our 40+ hiring partners." }
+  {
+    "step": "01",
+    "title": "Fundamentals",
+    "desc": "Build strong programming and computer science fundamentals."
+  },
+  {
+    "step": "02",
+    "title": "Real Projects",
+    "desc": "Apply concepts by building practical, real-world projects."
+  },
+  {
+    "step": "03",
+    "title": "Industry Mentorship",
+    "desc": "Learn engineering practices from experienced professionals."
+  },
+  {
+    "step": "04",
+    "title": "Internship",
+    "desc": "Work on real client/in-house projects and gain practical exposure."
+  },
+  {
+    "step": "05",
+    "title": "Collaborative Development",
+    "desc": "Learn Git, teamwork, code reviews and collaborative workflows."
+  },
+  {
+    "step": "06",
+    "title": "Resume Building",
+    "desc": "Build a strong, recruiter-ready technical profile and resume."
+  }
 ]

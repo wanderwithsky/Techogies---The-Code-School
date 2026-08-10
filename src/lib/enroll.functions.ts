@@ -1,6 +1,12 @@
 import { createServerFn } from "@tanstack/react-start";
 import { getRequestIP, getRequestHeader } from "@tanstack/react-start/server";
 import { z } from "zod";
+import { createClient } from "@supabase/supabase-js";
+
+// We create a fresh client here to avoid any client-side env issues in the server function
+const supabaseUrl = process.env.VITE_SUPABASE_URL || "https://placeholder-project.supabase.co";
+const supabaseAnonKey = process.env.VITE_SUPABASE_ANON_KEY || "placeholder-anon-key";
+const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 const EnrollSchema = z.object({
   name: z.string().trim().min(2).max(100),
@@ -39,9 +45,6 @@ export const submitEnrollment = createServerFn({ method: "POST" })
   .inputValidator((data: unknown) => EnrollSchema.parse(data))
   .handler(async ({ data }) => {
     const endpoint = process.env.ENROLL_GSCRIPT_URL;
-    if (!endpoint) {
-      return { ok: false as const, error: "Service not configured." };
-    }
 
     const ip =
       getRequestIP({ xForwardedFor: true }) ??
@@ -52,18 +55,32 @@ export const submitEnrollment = createServerFn({ method: "POST" })
       return { ok: false as const, error: "Too many submissions. Please try again later." };
     }
 
-    const form = new FormData();
-    form.append("name", data.name);
-    form.append("email", data.email);
-    form.append("phone", data.phone);
-    form.append("location", data.location);
-
     try {
-      const res = await fetch(endpoint, { method: "POST", body: form });
-      if (!res.ok) {
-        console.error("Enrollment upstream error:", res.status);
-        return { ok: false as const, error: "Upstream service error." };
+      // 1. Insert into Supabase
+      const { error: dbError } = await supabase.from('enrollments').insert({
+        student_name: data.name,
+        email: data.email,
+        phone: data.phone,
+        city: data.location,
+        status: "New",
+        payment_status: "Pending"
+      });
+      
+      if (dbError) {
+        console.error("Supabase enrollment insert error:", dbError);
       }
+
+      // 2. Also send to Google Script if configured
+      if (endpoint) {
+        const form = new FormData();
+        form.append("name", data.name);
+        form.append("email", data.email);
+        form.append("phone", data.phone);
+        form.append("location", data.location);
+
+        await fetch(endpoint, { method: "POST", body: form }).catch(e => console.error("GScript error:", e));
+      }
+      
       return { ok: true as const };
     } catch (err) {
       console.error("Enrollment proxy fetch failed:", err);

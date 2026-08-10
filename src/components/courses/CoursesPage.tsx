@@ -14,8 +14,9 @@ import { WhyChooseTechogies } from "./WhyChooseTechogies";
 import { CallbackSection } from "./CallbackSection";
 import { InfoBanner } from "./InfoBanner";
 import { StillConfused } from "./StillConfused";
-
-const courses = coursesData as Course[];
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { supabase } from "@/lib/supabase";
+import { useEffect } from "react";
 
 type Action =
   | { type: "patch"; value: Partial<Filters> }
@@ -35,16 +36,75 @@ function reducer(state: Filters, action: Action): Filters {
       } as Filters;
     }
     case "reset":
-      return defaultFilters(meta.priceRange.max);
+      return defaultFilters();
     default:
       return state;
   }
 }
 
 export function CoursesPage() {
-  const [filters, dispatch] = useReducer(reducer, defaultFilters(meta.priceRange.max));
+  const queryClient = useQueryClient();
+  const [filters, dispatch] = useReducer(reducer, defaultFilters());
   const [sheetOpen, setSheetOpen] = useState(false);
   const debouncedSearch = useDebouncedValue(filters.search, 250);
+
+  const { data: dbCourses = [], isLoading } = useQuery({
+    queryKey: ["courses"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("courses")
+        .select("*")
+        .eq("status", "active")
+        .order("display_order", { ascending: true })
+        .order("created_at", { ascending: true });
+      if (error) throw error;
+      return data;
+    },
+  });
+
+  useEffect(() => {
+    const channel = supabase
+      .channel('public-courses-changes')
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'courses' }, () => {
+        queryClient.invalidateQueries({ queryKey: ["courses"] });
+      })
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, [queryClient]);
+
+  // Map database fields to the frontend Course interface
+  const courses: Course[] = useMemo(() => {
+    return dbCourses.map((c: any) => ({
+      id: c.slug || c.id,
+      title: c.title,
+      duration: c.duration || "6 Months",
+      level: "All Levels",
+      image: c.image_url || "",
+      tag: c.category,
+      categoryId: c.category || "all",
+      iconName: "Layers",
+      difficulty: "Intermediate",
+      shortDescription: c.short_description || "",
+      fullDescription: c.full_description,
+      technologies: c.technologies || [],
+      curriculum: c.curriculum || [],
+      features: c.features || [],
+      mode: "Online Live",
+      placement: true,
+      internship: true,
+      certificate: true,
+      rating: 4.8,
+      enrolled: 1000,
+      popularity: 90,
+      createdAt: c.created_at,
+      durationMonths: parseInt(c.duration) || 6,
+      careerGoals: [],
+      learningPath: c.category || "General"
+    }));
+  }, [dbCourses]);
 
   const results = useMemo(() => {
     const q = debouncedSearch.trim().toLowerCase();
@@ -72,7 +132,6 @@ export function CoursesPage() {
         if (!matches) return false;
       }
       if (filters.modes.length && !filters.modes.includes(c.mode)) return false;
-      if (c.offerPrice > filters.priceMax) return false;
       if (filters.placement && !c.placement) return false;
       if (filters.internship && !c.internship) return false;
       if (filters.certificate && !c.certificate) return false;
@@ -90,18 +149,16 @@ export function CoursesPage() {
       case "duration":
         list = [...list].sort((a, b) => a.durationMonths - b.durationMonths);
         break;
-      case "priceAsc":
-        list = [...list].sort((a, b) => a.offerPrice - b.offerPrice);
-        break;
-      case "priceDesc":
-        list = [...list].sort((a, b) => b.offerPrice - a.offerPrice);
-        break;
       case "popular":
       default:
         list = [...list].sort((a, b) => b.popularity - a.popularity);
     }
+    console.log("DEBUG: Filters applied:", filters);
+    console.log("DEBUG: Search query:", q);
+    console.log("DEBUG: Courses loaded:", courses.length);
+    console.log("DEBUG: Results after filter:", list.length);
     return list;
-  }, [debouncedSearch, filters]);
+  }, [debouncedSearch, filters, courses]);
 
   const totalCourses = courses.length;
 
@@ -129,7 +186,9 @@ export function CoursesPage() {
               activeFilterCount={countActive(filters)}
             />
             <InfoBanner />
-            {results.length === 0 ? (
+            {isLoading ? (
+              <div className="py-20 text-center text-muted-foreground">Loading courses...</div>
+            ) : results.length === 0 ? (
               <EmptyState onReset={() => dispatch({ type: "reset" })} />
             ) : (
               <CourseGrid courses={results} />
@@ -158,7 +217,6 @@ function countActive(f: Filters) {
     (f.difficulty ? 1 : 0) +
     f.durationBuckets.length +
     f.modes.length +
-    (f.priceMax < meta.priceRange.max ? 1 : 0) +
     (f.placement ? 1 : 0) +
     (f.internship ? 1 : 0) +
     (f.certificate ? 1 : 0) +

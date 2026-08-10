@@ -1,6 +1,12 @@
 import { createServerFn } from "@tanstack/react-start";
 import { getRequestIP, getRequestHeader } from "@tanstack/react-start/server";
 import { z } from "zod";
+import { createClient } from "@supabase/supabase-js";
+
+// We create a fresh client here to avoid any client-side env issues in the server function
+const supabaseUrl = process.env.VITE_SUPABASE_URL || "https://placeholder-project.supabase.co";
+const supabaseAnonKey = process.env.VITE_SUPABASE_ANON_KEY || "placeholder-anon-key";
+const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 const ContactSchema = z.object({
   name: z.string().trim().min(2).max(100),
@@ -42,9 +48,7 @@ export const submitContact = createServerFn({ method: "POST" })
   .validator((data: unknown) => ContactSchema.parse(data))
   .handler(async ({ data }) => {
     const endpoint = process.env.CONTACT_GSCRIPT_URL;
-    if (!endpoint) {
-      return { ok: false as const, error: "Service not configured." };
-    }
+
 
     const ip =
       getRequestIP({ xForwardedFor: true }) ??
@@ -55,24 +59,40 @@ export const submitContact = createServerFn({ method: "POST" })
       return { ok: false as const, error: "Too many submissions. Please try again later." };
     }
 
-    const form = new FormData();
-    form.append("name", data.name);
-    form.append("phone", data.phone);
-    form.append("email", data.email);
-    form.append("city", data.city);
-    form.append("qualification", data.qualification);
-    form.append("course", data.course);
-    if (data.message) form.append("message", data.message);
-
     try {
-      const res = await fetch(endpoint, { method: "POST", body: form });
-      if (!res.ok) {
-        console.error("Contact upstream error:", res.status);
-        return { ok: false as const, error: "Upstream service error." };
+      // 1. Insert into Supabase
+      const { error: dbError } = await supabase.from('enquiries').insert({
+        name: data.name,
+        phone: data.phone,
+        email: data.email,
+        city: data.city,
+        qualification: data.qualification,
+        course: data.course,
+        message: data.message || "",
+        status: "New"
+      });
+      
+      if (dbError) {
+        console.error("Supabase insert error:", dbError);
       }
+
+      // 2. Also send to Google Script if configured (fallback/legacy)
+      if (endpoint) {
+        const form = new FormData();
+        form.append("name", data.name);
+        form.append("phone", data.phone);
+        form.append("email", data.email);
+        form.append("city", data.city);
+        form.append("qualification", data.qualification);
+        form.append("course", data.course);
+        if (data.message) form.append("message", data.message);
+        
+        await fetch(endpoint, { method: "POST", body: form }).catch(e => console.error("GScript error:", e));
+      }
+      
       return { ok: true as const };
     } catch (err) {
-      console.error("Contact proxy fetch failed:", err);
+      console.error("Contact form failed:", err);
       return { ok: false as const, error: "Network error." };
     }
   });

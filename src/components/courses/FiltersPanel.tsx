@@ -124,20 +124,6 @@ export function FiltersPanel({
         </div>
       </FilterGroup>
 
-      <FilterGroup title="Max Price">
-        <div className="mb-3 flex items-center justify-between text-sm">
-          <span className="text-muted-foreground">Up to</span>
-          <span className="font-semibold text-foreground">₹{inr(filters.priceMax)}</span>
-        </div>
-        <Slider
-          min={meta.priceRange.min}
-          max={meta.priceRange.max}
-          step={meta.priceRange.step}
-          value={[filters.priceMax]}
-          onValueChange={([v]) => dispatch({ type: "patch", value: { priceMax: v } })}
-        />
-      </FilterGroup>
-
       <FilterGroup title="Support">
         <div className="space-y-3">
           {(

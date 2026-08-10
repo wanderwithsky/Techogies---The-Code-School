@@ -12,6 +12,7 @@ import { Roadmap } from "@/components/sections/Roadmap";
 import { Projects } from "@/components/sections/Projects";
 import { CareerPaths } from "@/components/sections/CareerPaths";
 import { Partners } from "@/components/sections/Partners";
+import { WhyTechogies } from "@/components/sections/WhyTechogies";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { Mentors } from "@/components/sections/Mentors";
 import { ImpactSection } from "@/components/Impact/ImpactSection";
@@ -30,13 +31,14 @@ export function Landing() {
         <Hero />
         <Stats />
         <WhyUs />
+        <WhyTechogies />
         <Roadmap />
         <Partners />
         <Projects />
         <CareerPaths />
-        <Testimonials />
         <ImpactSection />
         <Mentors />
+        <Testimonials />
         <CounsellingCTA />
         <FAQ />
         <Contact />

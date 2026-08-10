@@ -3,15 +3,16 @@ export type Course = {
   title: string;
   duration: string;
   level: string;
-  originalPrice: number;
-  offerPrice: number;
   image: string;
   tag?: string;
   categoryId: string;
   iconName: string;
   difficulty: string;
   shortDescription: string;
+  fullDescription?: string;
   technologies: string[];
+  curriculum?: string[];
+  features?: string[];
   mode: "Online Live" | "Recorded" | "Hybrid";
   placement: boolean;
   internship: boolean;
@@ -31,7 +32,6 @@ export type Filters = {
   difficulty: string | null;
   durationBuckets: string[];
   modes: string[];
-  priceMax: number;
   placement: boolean;
   internship: boolean;
   certificate: boolean;
@@ -39,13 +39,12 @@ export type Filters = {
   sort: string;
 };
 
-export const defaultFilters = (priceMax: number): Filters => ({
+export const defaultFilters = (): Filters => ({
   search: "",
   learningPaths: [],
   difficulty: null,
   durationBuckets: [],
   modes: [],
-  priceMax,
   placement: false,
   internship: false,
   certificate: false,
