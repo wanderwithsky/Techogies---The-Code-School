@@ -7,7 +7,6 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { ScrollProgress } from "@/components/layout/ScrollProgress";
 import { BackToTop } from "@/components/layout/BackToTop";
-import { WhatsAppFab } from "@/components/layout/WhatsAppFab";
 import { EnrollModal } from "@/components/enrollment/EnrollModal";
 import { GradientButton } from "@/components/common/GradientButton";
 import storiesData from "@/data/stories.json";
@@ -87,7 +86,6 @@ function StoryRoute() {
         </main>
         <Footer />
         <BackToTop />
-        <WhatsAppFab />
         <Toaster position="top-center" richColors />
         <EnrollModal />
       </EnrollProvider>

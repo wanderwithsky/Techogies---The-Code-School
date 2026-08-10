@@ -25,6 +25,7 @@ const ContactSchema = z.object({
   qualification: z.string().trim().min(1).max(100),
   course: z.string().trim().min(1).max(100),
   message: z.string().trim().max(1000).optional(),
+  source: z.string().trim().max(100).optional(),
 });
 
 // Simple in-memory rate limit (per worker instance): 5 submissions / 10 min per IP.
@@ -59,9 +60,18 @@ export const submitContact = createServerFn({ method: "POST" })
       return { ok: false as const, error: "Too many submissions. Please try again later." };
     }
 
+    console.log("Production enquiry submit started");
+    console.log("SUPABASE_URL configured:", !!process.env.VITE_SUPABASE_URL);
+    console.log("SUPABASE_KEY configured:", !!process.env.VITE_SUPABASE_ANON_KEY);
     try {
-      // 1. Insert into Supabase
-      const { error: dbError } = await supabase.from('enquiries').insert({
+      const urlHost = new URL(supabaseUrl).hostname;
+      console.log("SUPABASE_URL hostname:", urlHost);
+    } catch (e) {
+      console.log("SUPABASE_URL hostname: invalid URL");
+    }
+
+    try {
+      const insertData: any = {
         name: data.name,
         phone: data.phone,
         email: data.email,
@@ -70,10 +80,17 @@ export const submitContact = createServerFn({ method: "POST" })
         course: data.course,
         message: data.message || "",
         status: "New"
-      });
+      };
+
+      if (data.source) {
+        insertData.internal_notes = `[Source: ${data.source}]`;
+      }
+
+      const { error: dbError } = await supabase.from('enquiries').insert(insertData);
       
       if (dbError) {
         console.error("Supabase insert error:", dbError);
+        return { ok: false as const, error: "Database error. Please try again." };
       }
 
       // 2. Also send to Google Script if configured (fallback/legacy)

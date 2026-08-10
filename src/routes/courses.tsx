@@ -5,7 +5,6 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { ScrollProgress } from "@/components/layout/ScrollProgress";
 import { BackToTop } from "@/components/layout/BackToTop";
-import { WhatsAppFab } from "@/components/layout/WhatsAppFab";
 import { FooterBrand } from "@/components/FooterBrand/FooterBrand";
 import { CoursesPage } from "@/components/courses/CoursesPage";
 import { EnrollModal } from "@/components/enrollment/EnrollModal";
@@ -48,7 +47,6 @@ function CoursesRoute() {
           </main>
           <Footer />
           <BackToTop />
-          <WhatsAppFab />
           <Toaster position="top-center" richColors />
           <EnrollModal />
           <CourseDetailsModal />

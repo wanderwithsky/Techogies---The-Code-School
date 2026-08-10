@@ -133,7 +133,14 @@ function AdminEnquiriesPage() {
                       {new Date(enquiry.created_at).toLocaleDateString()}
                     </td>
                     <td className="p-4 align-middle">
-                      <div className="font-medium">{enquiry.name}</div>
+                      <div className="flex items-center gap-2">
+                        <div className="font-medium">{enquiry.name}</div>
+                        {enquiry.internal_notes?.includes('[Source: techie_live_chat]') && (
+                          <span className="inline-flex items-center rounded-full bg-brand/10 px-2 py-0.5 text-[10px] font-medium text-[color:var(--brand)]">
+                            Techie Chat
+                          </span>
+                        )}
+                      </div>
                       <div className="flex items-center gap-2 text-xs text-muted-foreground mt-1">
                         <Phone className="h-3 w-3" /> {enquiry.phone}
                       </div>

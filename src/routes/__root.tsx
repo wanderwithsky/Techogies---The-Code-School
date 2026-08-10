@@ -12,6 +12,7 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { ThemeProvider } from "@/context/ThemeContext";
+import { TechieChat } from "@/components/layout/TechieChat";
 
 function NotFoundComponent() {
   return (
@@ -139,12 +140,15 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const pathname = useRouter().state.location.pathname;
+  const isAdmin = pathname.startsWith("/admin");
 
   return (
     <ThemeProvider>
       <QueryClientProvider client={queryClient}>
         {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
         <Outlet />
+        {!isAdmin && <TechieChat />}
       </QueryClientProvider>
     </ThemeProvider>
   );

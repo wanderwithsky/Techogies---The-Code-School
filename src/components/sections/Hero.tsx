@@ -13,7 +13,7 @@ const fadeUp = {
 } as const;
 
 export function Hero() {
-  const heroRef = useRef<HTMLElement>(null);
+  const heroRef = useRef<HTMLElement>(null!);
   
   return (
     <section

@@ -126,7 +126,7 @@ export function Navbar() {
         "fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,box-shadow,backdrop-filter] duration-300",
         "border-b",
         !isTop
-          ? "bg-background/70 backdrop-blur-xl backdrop-saturate-150 border-border/60 shadow-[0_8px_30px_-12px_rgba(0,0,0,0.35)]"
+          ? "bg-card/85 backdrop-blur-xl backdrop-saturate-150 border-border/60 shadow-[0_8px_30px_-12px_rgba(0,0,0,0.35)]"
           : "bg-black/[0.12] backdrop-blur-[12px] border-transparent text-white"
       )}
     >

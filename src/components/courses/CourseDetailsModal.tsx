@@ -34,7 +34,7 @@ export function CourseDetailsModal() {
   }, [course, close]);
 
   let derivedDuration = course?.duration || "6 Months";
-  let derivedMode = course?.mode || "Online Live";
+  let derivedMode: string = course?.mode || "Online Live";
   let derivedLevel = course?.level || course?.difficulty || "All Levels";
   let derivedLearningPoints = (course as any)?.curriculum && (course as any).curriculum.length > 0 
     ? (course as any).curriculum 

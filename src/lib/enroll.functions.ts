@@ -68,6 +68,7 @@ export const submitEnrollment = createServerFn({ method: "POST" })
       
       if (dbError) {
         console.error("Supabase enrollment insert error:", dbError);
+        return { ok: false as const, error: "Database error. Please try again." };
       }
 
       // 2. Also send to Google Script if configured

@@ -1,13 +1,15 @@
 import { useRef, useState } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { SectionHeading } from "@/components/common/SectionHeading";
-import { ArrowRight, Terminal, Shield, Network, Lock, Server, Database, Code2, GitBranch } from "lucide-react";
+import { X, ArrowRight, Terminal, Shield, Network, Lock, Server, Database, Code2, GitBranch, Clock, MonitorPlay, Layers } from "lucide-react";
 import { Link } from "@tanstack/react-router";
+import coursesData from "@/data/courses.json";
+import { useEffect } from "react";
 
 const FULL_STACK_TAGS = ["React", "Node.js", "Express", "MongoDB", "Git", "REST APIs", "Docker", "Cloud", "AI Integration"];
 const CYBER_TAGS = ["Linux", "Networking", "Ethical Hacking", "OWASP", "Burp Suite", "Wireshark", "Nmap", "Metasploit", "SOC"];
 
-function FullStackCard({ isActive, isHovered, onHover }: { isActive: boolean; isHovered: boolean; onHover: (hovered: boolean) => void }) {
+function FullStackCard({ isActive, isHovered, onHover, onExplore }: { isActive: boolean; isHovered: boolean; onHover: (hovered: boolean) => void; onExplore: () => void; }) {
   const cardRef = useRef<HTMLDivElement>(null);
   
   // Parallax mouse values
@@ -54,7 +56,7 @@ function FullStackCard({ isActive, isHovered, onHover }: { isActive: boolean; is
         style={{
           background: useTransform(
             [springX, springY],
-            ([x, y]) => `radial-gradient(circle at ${x * 100}% ${y * 100}%, rgba(255,107,0,0.1) 0%, transparent 50%)`
+            ([x, y]: any) => `radial-gradient(circle at ${x * 100}% ${y * 100}%, rgba(255,107,0,0.1) 0%, transparent 50%)`
           )
         }}
       />
@@ -133,14 +135,14 @@ function FullStackCard({ isActive, isHovered, onHover }: { isActive: boolean; is
       </div>
 
       {/* CTA */}
-      <Link to="/courses" hash="full-stack" className="relative z-10 mt-8 flex w-fit items-center gap-2 font-medium text-[color:var(--brand)] transition-colors hover:text-foreground">
+      <button onClick={onExplore} className="relative z-10 mt-8 flex w-fit items-center gap-2 font-medium text-[color:var(--brand)] transition-colors hover:text-foreground">
         Explore Full Stack <ArrowRight size={16} />
-      </Link>
+      </button>
     </motion.div>
   );
 }
 
-function CyberSecurityCard({ isActive, isHovered, onHover }: { isActive: boolean; isHovered: boolean; onHover: (hovered: boolean) => void }) {
+function CyberSecurityCard({ isActive, isHovered, onHover, onExplore }: { isActive: boolean; isHovered: boolean; onHover: (hovered: boolean) => void; onExplore: () => void; }) {
   const cardRef = useRef<HTMLDivElement>(null);
   
   // Parallax mouse values
@@ -187,7 +189,7 @@ function CyberSecurityCard({ isActive, isHovered, onHover }: { isActive: boolean
         style={{
           background: useTransform(
             [springX, springY],
-            ([x, y]) => `radial-gradient(circle at ${x * 100}% ${y * 100}%, rgba(255,107,0,0.1) 0%, transparent 50%)`
+            ([x, y]: any) => `radial-gradient(circle at ${x * 100}% ${y * 100}%, rgba(255,107,0,0.1) 0%, transparent 50%)`
           )
         }}
       />
@@ -289,15 +291,16 @@ function CyberSecurityCard({ isActive, isHovered, onHover }: { isActive: boolean
       </div>
 
       {/* CTA */}
-      <Link to="/courses" hash="cyber-security" className="relative z-10 mt-8 flex w-fit items-center gap-2 font-medium text-[color:var(--brand)] transition-colors hover:text-foreground">
+      <button onClick={onExplore} className="relative z-10 mt-8 flex w-fit items-center gap-2 font-medium text-[color:var(--brand)] transition-colors hover:text-foreground">
         Explore Cyber Security <ArrowRight size={16} />
-      </Link>
+      </button>
     </motion.div>
   );
 }
 
 export function CareerPaths() {
   const [hoveredCard, setHoveredCard] = useState<"fullstack" | "cyber" | null>(null);
+  const [previewCourseId, setPreviewCourseId] = useState<string | null>(null);
 
   return (
     <section className="relative py-24 sm:py-32 overflow-hidden bg-background">
@@ -326,6 +329,7 @@ export function CareerPaths() {
               isActive={hoveredCard === null || hoveredCard === "fullstack"} 
               isHovered={hoveredCard === "fullstack"}
               onHover={(isHovering) => setHoveredCard(isHovering ? "fullstack" : null)}
+              onExplore={() => setPreviewCourseId("fullstack")}
             />
           </motion.div>
           
@@ -339,10 +343,136 @@ export function CareerPaths() {
               isActive={hoveredCard === null || hoveredCard === "cyber"} 
               isHovered={hoveredCard === "cyber"}
               onHover={(isHovering) => setHoveredCard(isHovering ? "cyber" : null)}
+              onExplore={() => setPreviewCourseId("cyber")}
             />
           </motion.div>
         </div>
       </div>
+
+      <CoursePreviewModal courseId={previewCourseId} onClose={() => setPreviewCourseId(null)} />
     </section>
+  );
+}
+
+function CoursePreviewModal({ courseId, onClose }: { courseId: string | null; onClose: () => void }) {
+  useEffect(() => {
+    if (courseId) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [courseId]);
+
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", handleEsc);
+    return () => window.removeEventListener("keydown", handleEsc);
+  }, [onClose]);
+
+  if (!courseId) return null;
+
+  const course = coursesData.find((c) => c.id === courseId);
+  if (!course) return null;
+
+  const points =
+    courseId === "fullstack"
+      ? [
+          "Master modern frontend UI development with React & Tailwind.",
+          "Build scalable backend systems with Node.js and Express.",
+          "Design and manage databases using PostgreSQL & MongoDB.",
+          "Deploy containerized applications using Docker and Cloud platforms."
+        ]
+      : [
+          "Understand core networking protocols and Linux administration.",
+          "Perform ethical hacking and penetration testing on real targets.",
+          "Identify and exploit vulnerabilities using Burp Suite & Metasploit.",
+          "Monitor and defend systems in a Security Operations Center (SOC) workflow."
+        ];
+
+  return (
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.2 }}
+        onClick={onClose}
+        className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+      />
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95, y: 20 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.95, y: 20 }}
+        transition={{ type: "spring", damping: 25, stiffness: 300 }}
+        className="relative flex w-full max-w-lg flex-col overflow-hidden rounded-2xl bg-card border border-border shadow-2xl"
+      >
+        <button
+          onClick={onClose}
+          className="absolute right-4 top-4 z-10 grid h-8 w-8 place-items-center rounded-full bg-secondary text-muted-foreground transition hover:bg-[color:var(--brand)] hover:text-white"
+        >
+          <X size={18} />
+        </button>
+
+        <div className="flex flex-col p-6 sm:p-8">
+          <div className="flex items-center gap-2 text-[color:var(--brand)] mb-3">
+            {courseId === "fullstack" ? <Layers size={20} /> : <Shield size={20} />}
+            <span className="font-semibold text-sm tracking-wide uppercase">{course.categoryId}</span>
+          </div>
+          
+          <h2 className="font-display text-2xl font-bold text-foreground mb-3">{course.title}</h2>
+          <p className="text-muted-foreground text-sm leading-relaxed mb-6">{course.shortDescription}</p>
+
+          <div className="flex flex-wrap gap-4 mb-6 pb-6 border-b border-border/50">
+            <div className="flex items-center gap-1.5 text-sm text-foreground font-medium">
+              <Clock size={16} className="text-muted-foreground" /> {course.duration}
+            </div>
+            <div className="flex items-center gap-1.5 text-sm text-foreground font-medium">
+              <MonitorPlay size={16} className="text-muted-foreground" /> Offline / Live
+            </div>
+          </div>
+
+          <div className="mb-6">
+            <h3 className="text-sm font-bold text-foreground mb-3">What you'll learn</h3>
+            <ul className="space-y-2.5">
+              {points.map((point, i) => (
+                <li key={i} className="flex items-start gap-2.5 text-sm text-muted-foreground">
+                  <div className="mt-1 flex-shrink-0 h-1.5 w-1.5 rounded-full bg-[color:var(--brand)]" />
+                  <span className="leading-relaxed">{point}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="mb-8">
+            <h3 className="text-sm font-bold text-foreground mb-3">Key Technologies</h3>
+            <div className="flex flex-wrap gap-2">
+              {course.technologies.slice(0, 6).map((tech) => (
+                <span key={tech} className="rounded-md border border-border bg-secondary/50 px-2.5 py-1 text-xs font-medium text-foreground">
+                  {tech}
+                </span>
+              ))}
+              {course.technologies.length > 6 && (
+                <span className="rounded-md border border-border bg-secondary/50 px-2.5 py-1 text-xs font-medium text-muted-foreground">
+                  +{course.technologies.length - 6} more
+                </span>
+              )}
+            </div>
+          </div>
+
+          <Link
+            to="/courses"
+            onClick={onClose}
+            className="flex w-full items-center justify-center gap-2 rounded-full bg-[color:var(--brand)] py-3.5 text-sm font-semibold text-white transition hover:bg-orange-600 shadow-lg"
+          >
+            Explore All Programs <ArrowRight size={18} />
+          </Link>
+        </div>
+      </motion.div>
+    </div>
   );
 }

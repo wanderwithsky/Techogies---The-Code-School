@@ -4,14 +4,12 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { ScrollProgress } from "@/components/layout/ScrollProgress";
 import { BackToTop } from "@/components/layout/BackToTop";
-import { WhatsAppFab } from "@/components/layout/WhatsAppFab";
+
 import { Stats } from "@/components/sections/Stats";
 import { Hero } from "@/components/sections/Hero";
-import { WhyUs } from "@/components/sections/WhyUs";
 import { Roadmap } from "@/components/sections/Roadmap";
-import { Projects } from "@/components/sections/Projects";
 import { CareerPaths } from "@/components/sections/CareerPaths";
-import { Partners } from "@/components/sections/Partners";
+import { ExplorePrograms } from "@/components/sections/ExplorePrograms";
 import { WhyTechogies } from "@/components/sections/WhyTechogies";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { Mentors } from "@/components/sections/Mentors";
@@ -21,21 +19,22 @@ import { FAQ } from "@/components/sections/FAQ";
 import { Contact } from "@/components/sections/Contact";
 import { FooterBrand } from "@/components/FooterBrand/FooterBrand";
 import { EnrollModal } from "@/components/enrollment/EnrollModal";
+import { CourseDetailsProvider } from "@/context/CourseDetailsContext";
+import { CourseDetailsModal } from "@/components/courses/CourseDetailsModal";
 
 export function Landing() {
   return (
     <EnrollProvider>
-      <ScrollProgress />
+      <CourseDetailsProvider>
+        <ScrollProgress />
       <Navbar />
       <main>
         <Hero />
         <Stats />
-        <WhyUs />
-        <WhyTechogies />
+        <ExplorePrograms />
         <Roadmap />
-        <Partners />
-        <Projects />
         <CareerPaths />
+        <WhyTechogies />
         <ImpactSection />
         <Mentors />
         <Testimonials />
@@ -46,9 +45,10 @@ export function Landing() {
       </main>
       <Footer />
       <BackToTop />
-      <WhatsAppFab />
       <Toaster position="top-center" richColors />
       <EnrollModal />
+      <CourseDetailsModal />
+      </CourseDetailsProvider>
     </EnrollProvider>
   );
 }
