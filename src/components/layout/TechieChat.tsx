@@ -38,20 +38,40 @@ export function TechieChat() {
   // Auto-open logic
   useEffect(() => {
     if (hasAutoOpened.current) return;
+    
+    const techieOpened = sessionStorage.getItem("techieAutoOpened");
+    if (techieOpened) {
+      hasAutoOpened.current = true;
+      return;
+    }
 
-    console.log("[TechieChat] mounted");
-    console.log("[TechieChat] auto-open timer started");
+    const startTimer = () => {
+      const timer = setTimeout(() => {
+        if (!hasAutoOpened.current) {
+          setIsOpen(true);
+          hasAutoOpened.current = true;
+          sessionStorage.setItem("techieAutoOpened", "true");
+        }
+      }, 5000);
+      return timer;
+    };
 
-    const timer = setTimeout(() => {
-      if (!hasAutoOpened.current) {
-        console.log("[TechieChat] 3 seconds completed");
-        console.log("[TechieChat] opening chat");
-        setIsOpen(true);
-        hasAutoOpened.current = true;
-      }
-    }, 3000);
-
-    return () => clearTimeout(timer);
+    // If Landing page flagged that it's handling the sequence
+    if (sessionStorage.getItem("techieWaitingForEnroll")) {
+      let timer: NodeJS.Timeout;
+      const handleTimer = () => {
+        timer = startTimer();
+      };
+      window.addEventListener("start_techie_timer", handleTimer);
+      return () => {
+        window.removeEventListener("start_techie_timer", handleTimer);
+        clearTimeout(timer);
+      };
+    } else {
+      // Not on landing page or landing page already ran
+      const timer = startTimer();
+      return () => clearTimeout(timer);
+    }
   }, []);
 
   // Mark as opened if user manually opens it before timer fires
