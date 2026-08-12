@@ -1,14 +1,10 @@
 import { motion } from "framer-motion";
-import { Search, Sparkles, X, Flame } from "lucide-react";
+import { Sparkles, Flame } from "lucide-react";
 
 export function CoursesHero({
   totalCourses,
-  search,
-  onSearch,
 }: {
   totalCourses: number;
-  search: string;
-  onSearch: (v: string) => void;
 }) {
   return (
     <section className="relative overflow-hidden pt-28 pb-14 sm:pt-32 sm:pb-16">
@@ -62,38 +58,6 @@ export function CoursesHero({
           Explore industry-focused programs designed to help you build practical
           skills, real-world projects, and become job-ready.
         </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, delay: 0.18 }}
-          className="mx-auto mt-8 max-w-2xl"
-        >
-          <div className="group relative">
-            <div className="pointer-events-none absolute inset-0 -z-10 rounded-full bg-gradient-to-r from-primary/20 via-primary/10 to-transparent blur-2xl opacity-70 transition-opacity group-focus-within:opacity-100" />
-            <label className="flex items-center gap-3 rounded-full border border-border/70 bg-background/80 pl-5 pr-2 py-2 backdrop-blur-xl shadow-[0_8px_40px_-20px_hsl(var(--primary)/0.35)] transition-all focus-within:border-primary/60 focus-within:shadow-[0_10px_50px_-16px_hsl(var(--primary)/0.5)]">
-              <Search size={18} className="shrink-0 text-muted-foreground" />
-              <input
-                type="text"
-                value={search}
-                onChange={(e) => onSearch(e.target.value)}
-                placeholder="Search by course, technology, or career goal…"
-                aria-label="Search courses"
-                className="min-w-0 flex-1 bg-transparent py-2 text-sm outline-none placeholder:text-muted-foreground sm:text-base"
-              />
-              {search && (
-                <button
-                  type="button"
-                  onClick={() => onSearch("")}
-                  aria-label="Clear search"
-                  className="grid h-8 w-8 place-items-center rounded-full text-muted-foreground transition hover:bg-accent hover:text-foreground"
-                >
-                  <X size={16} />
-                </button>
-              )}
-            </label>
-          </div>
-        </motion.div>
       </div>
     </section>
   );

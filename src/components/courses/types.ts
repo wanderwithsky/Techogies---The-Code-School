@@ -27,19 +27,9 @@ export type Course = {
 };
 
 export type Filters = {
-  search: string;
-  learningPaths: string[];
-  difficulty: string | null;
-  durationBuckets: string[];
-  technologies: string[];
   sort: string;
 };
 
 export const defaultFilters = (): Filters => ({
-  search: "",
-  learningPaths: [],
-  difficulty: null,
-  durationBuckets: [],
-  technologies: [],
   sort: "popular",
 });

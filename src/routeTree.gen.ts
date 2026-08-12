@@ -19,6 +19,7 @@ import { Route as AdminEnquiriesRouteImport } from './routes/admin/enquiries'
 import { Route as AdminEnrollmentsRouteImport } from './routes/admin/enrollments'
 import { Route as AdminMentorsRouteImport } from './routes/admin/mentors'
 import { Route as AdminProjectsRouteImport } from './routes/admin/projects'
+import { Route as AdminProposalsRouteImport } from './routes/admin/proposals'
 import { Route as AdminStudentsRouteImport } from './routes/admin/students'
 import { Route as AdminTestimonialsRouteImport } from './routes/admin/testimonials'
 import { Route as StoriesSlugRouteImport } from './routes/stories.$slug'
@@ -73,6 +74,11 @@ const AdminProjectsRoute = AdminProjectsRouteImport.update({
   path: '/projects',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminProposalsRoute = AdminProposalsRouteImport.update({
+  id: '/proposals',
+  path: '/proposals',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminStudentsRoute = AdminStudentsRouteImport.update({
   id: '/students',
   path: '/students',
@@ -99,6 +105,7 @@ export interface FileRoutesByFullPath {
   '/admin/enrollments': typeof AdminEnrollmentsRoute
   '/admin/mentors': typeof AdminMentorsRoute
   '/admin/projects': typeof AdminProjectsRoute
+  '/admin/proposals': typeof AdminProposalsRoute
   '/admin/students': typeof AdminStudentsRoute
   '/admin/testimonials': typeof AdminTestimonialsRoute
   '/stories/$slug': typeof StoriesSlugRoute
@@ -113,6 +120,7 @@ export interface FileRoutesByTo {
   '/admin/enrollments': typeof AdminEnrollmentsRoute
   '/admin/mentors': typeof AdminMentorsRoute
   '/admin/projects': typeof AdminProjectsRoute
+  '/admin/proposals': typeof AdminProposalsRoute
   '/admin/students': typeof AdminStudentsRoute
   '/admin/testimonials': typeof AdminTestimonialsRoute
   '/stories/$slug': typeof StoriesSlugRoute
@@ -129,6 +137,7 @@ export interface FileRoutesById {
   '/admin/enrollments': typeof AdminEnrollmentsRoute
   '/admin/mentors': typeof AdminMentorsRoute
   '/admin/projects': typeof AdminProjectsRoute
+  '/admin/proposals': typeof AdminProposalsRoute
   '/admin/students': typeof AdminStudentsRoute
   '/admin/testimonials': typeof AdminTestimonialsRoute
   '/stories/$slug': typeof StoriesSlugRoute
@@ -146,6 +155,7 @@ export interface FileRouteTypes {
     | '/admin/enrollments'
     | '/admin/mentors'
     | '/admin/projects'
+    | '/admin/proposals'
     | '/admin/students'
     | '/admin/testimonials'
     | '/stories/$slug'
@@ -160,6 +170,7 @@ export interface FileRouteTypes {
     | '/admin/enrollments'
     | '/admin/mentors'
     | '/admin/projects'
+    | '/admin/proposals'
     | '/admin/students'
     | '/admin/testimonials'
     | '/stories/$slug'
@@ -175,6 +186,7 @@ export interface FileRouteTypes {
     | '/admin/enrollments'
     | '/admin/mentors'
     | '/admin/projects'
+    | '/admin/proposals'
     | '/admin/students'
     | '/admin/testimonials'
     | '/stories/$slug'
@@ -260,6 +272,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminProjectsRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/proposals': {
+      id: '/admin/proposals'
+      path: '/proposals'
+      fullPath: '/admin/proposals'
+      preLoaderRoute: typeof AdminProposalsRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/students': {
       id: '/admin/students'
       path: '/students'
@@ -291,6 +310,7 @@ interface AdminRouteChildren {
   AdminEnrollmentsRoute: typeof AdminEnrollmentsRoute
   AdminMentorsRoute: typeof AdminMentorsRoute
   AdminProjectsRoute: typeof AdminProjectsRoute
+  AdminProposalsRoute: typeof AdminProposalsRoute
   AdminStudentsRoute: typeof AdminStudentsRoute
   AdminTestimonialsRoute: typeof AdminTestimonialsRoute
   AdminIndexRoute: typeof AdminIndexRoute
@@ -303,6 +323,7 @@ const AdminRouteChildren: AdminRouteChildren = {
   AdminEnrollmentsRoute: AdminEnrollmentsRoute,
   AdminMentorsRoute: AdminMentorsRoute,
   AdminProjectsRoute: AdminProjectsRoute,
+  AdminProposalsRoute: AdminProposalsRoute,
   AdminStudentsRoute: AdminStudentsRoute,
   AdminTestimonialsRoute: AdminTestimonialsRoute,
   AdminIndexRoute: AdminIndexRoute,

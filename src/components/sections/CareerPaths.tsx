@@ -125,7 +125,7 @@ function FullStackCard({ isActive, isHovered, onHover, onExplore }: { isActive: 
           <motion.span 
             key={tag}
             initial={{ y: 0 }}
-            animate={isHovered ? { y: -5, backgroundColor: "rgba(128,128,128,0.1)" } : { y: 0, backgroundColor: "transparent" }}
+            animate={isHovered ? { y: -5, backgroundColor: "rgba(128,128,128,0.1)" } : { y: 0, backgroundColor: "rgba(128,128,128,0)" }}
             transition={{ delay: i * 0.05 }}
             className="rounded-full border border-border bg-secondary/50 px-3 py-1 text-xs text-muted-foreground transition-colors"
           >
@@ -281,7 +281,7 @@ function CyberSecurityCard({ isActive, isHovered, onHover, onExplore }: { isActi
           <motion.span 
             key={tag}
             initial={{ y: 0 }}
-            animate={isHovered ? { y: -5, backgroundColor: "rgba(128,128,128,0.1)" } : { y: 0, backgroundColor: "transparent" }}
+            animate={isHovered ? { y: -5, backgroundColor: "rgba(128,128,128,0.1)" } : { y: 0, backgroundColor: "rgba(128,128,128,0)" }}
             transition={{ delay: i * 0.05 }}
             className="rounded-full border border-border bg-secondary/50 px-3 py-1 text-xs text-muted-foreground transition-colors"
           >

@@ -10,6 +10,7 @@ import { Stats } from "@/components/sections/Stats";
 import { Hero } from "@/components/sections/Hero";
 import { Roadmap } from "@/components/sections/Roadmap";
 import { CareerPaths } from "@/components/sections/CareerPaths";
+import { CollegeProposal } from "@/components/sections/CollegeProposal";
 import { ExplorePrograms } from "@/components/sections/ExplorePrograms";
 import { WhyTechogies } from "@/components/sections/WhyTechogies";
 import { Testimonials } from "@/components/sections/Testimonials";
@@ -71,6 +72,7 @@ export function Landing() {
         <ExplorePrograms />
         <Roadmap />
         <CareerPaths />
+        <CollegeProposal />
         <WhyTechogies />
         <ImpactSection />
         <Mentors />

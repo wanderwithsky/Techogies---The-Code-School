@@ -1,11 +1,7 @@
 import { createServerFn } from "@tanstack/react-start";
 import { getRequestIP, getRequestHeader } from "@tanstack/react-start/server";
 import { z } from "zod";
-import { createClient } from "@supabase/supabase-js";
-
-const supabaseUrl = process.env.VITE_SUPABASE_URL || "https://placeholder-project.supabase.co";
-const supabaseAnonKey = process.env.VITE_SUPABASE_ANON_KEY || "placeholder-anon-key";
-const supabase = createClient(supabaseUrl, supabaseAnonKey);
+import { supabase } from "./supabase";
 
 const CallbackSchema = z.object({
   fullName: z.string().trim().min(2).max(80),
