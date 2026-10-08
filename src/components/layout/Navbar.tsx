@@ -113,7 +113,32 @@ export function Navbar() {
     scrollToId(id);
   };
 
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
   return (
+    <>
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, backdropFilter: "blur(0px)" }}
+            animate={{ opacity: 1, backdropFilter: "blur(12px)" }}
+            exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-40 bg-background/60 lg:hidden"
+            onClick={() => setOpen(false)}
+            aria-hidden="true"
+          />
+        )}
+      </AnimatePresence>
     <motion.header
       ref={headerRef}
       variants={{
@@ -127,7 +152,7 @@ export function Navbar() {
         "border-b",
         !isTop
           ? "bg-card/85 backdrop-blur-xl backdrop-saturate-150 border-border/60 shadow-[0_8px_30px_-12px_rgba(0,0,0,0.35)]"
-          : "bg-black/[0.12] backdrop-blur-[12px] border-transparent text-white"
+          : "bg-background/85 dark:bg-black/[0.12] backdrop-blur-[12px] border-border/40 dark:border-transparent dark:text-white"
       )}
     >
       <nav
@@ -155,7 +180,7 @@ export function Navbar() {
             className={cn(
               "inline-flex flex-col justify-center leading-none transition-[text-shadow] duration-300",
               isTop
-                ? "text-white [text-shadow:0_1px_8px_rgba(0,0,0,0.35)]"
+                ? "text-foreground dark:text-white dark:[text-shadow:0_1px_8px_rgba(0,0,0,0.35)]"
                 : "text-foreground"
             )}
           >
@@ -173,7 +198,7 @@ export function Navbar() {
             className={cn(
               "inline-flex items-center gap-1 rounded-full border px-2 py-1.5 backdrop-blur-xl backdrop-saturate-150 transition-all duration-300",
               isTop
-                ? "border-white/15 bg-white/10 shadow-[0_10px_40px_-20px_rgba(0,0,0,0.5)]"
+                ? "border-border/60 bg-background/80 shadow-[0_10px_40px_-20px_rgba(0,0,0,0.15)] dark:border-white/15 dark:bg-white/10 dark:shadow-[0_10px_40px_-20px_rgba(0,0,0,0.5)]"
                 : scrolled
                 ? "border-border/60 bg-background/75 shadow-[0_12px_40px_-16px_rgba(0,0,0,0.35)]"
                 : "border-border/60 bg-background/50 shadow-[0_10px_40px_-20px_rgba(0,0,0,0.35)]"
@@ -245,6 +270,7 @@ export function Navbar() {
         )}
       </AnimatePresence>
     </motion.header>
+    </>
   );
 }
 
@@ -288,10 +314,10 @@ function NavListItem({
             "relative rounded-full px-4 py-1.5 text-[0.85rem] font-medium transition-colors duration-300",
             active === item.id
               ? isTop
-                ? "text-white"
+                ? "text-primary dark:text-white"
                 : "text-primary"
               : isTop
-              ? "text-white/85 hover:text-white"
+              ? "text-foreground/80 hover:text-primary dark:text-white/85 dark:hover:text-white"
               : "text-muted-foreground hover:text-primary"
           );
     const pillAndLabel = (
@@ -303,7 +329,7 @@ function NavListItem({
               className={cn(
                 "absolute inset-0 -z-10 rounded-full ring-1",
                 isTop
-                  ? "bg-white/15 ring-white/25"
+                  ? "bg-primary/10 ring-primary/20 dark:bg-white/15 dark:ring-white/25"
                   : "bg-primary/12 ring-primary/25"
               )}
             />
@@ -341,14 +367,14 @@ function NavListItem({
           "group relative inline-flex items-center gap-1.5 px-3 py-2 text-[0.9rem] outline-none transition-all duration-300 hover:-translate-y-[1px] focus-visible:ring-2 focus-visible:ring-ring rounded-md",
           isTop ? "font-semibold" : "font-medium",
           isOpen
-            ? (isTop ? "text-white" : "text-foreground")
-            : (isTop ? "text-white/95 hover:text-primary" : "text-muted-foreground/90 hover:text-foreground")
+            ? (isTop ? "text-primary dark:text-white" : "text-foreground")
+            : (isTop ? "text-foreground/80 hover:text-primary dark:text-white/95 dark:hover:text-primary" : "text-muted-foreground/90 hover:text-foreground")
         )}
       >
         <span
           className={cn(
             "transition-[text-shadow] duration-300",
-            isTop && "[text-shadow:0_1px_8px_rgba(0,0,0,0.35)]"
+            isTop && "dark:[text-shadow:0_1px_8px_rgba(0,0,0,0.35)]"
           )}
         >
           {item.label}
@@ -358,7 +384,7 @@ function NavListItem({
           className={cn(
             "transition-all duration-300",
             isTop
-              ? "text-white/90 group-hover:text-primary"
+              ? "text-foreground/60 group-hover:text-primary dark:text-white/90 dark:group-hover:text-primary"
               : "text-muted-foreground/90 group-hover:text-primary",
             isOpen && "rotate-180 text-primary"
           )}
@@ -370,7 +396,7 @@ function NavListItem({
             "pointer-events-none absolute left-3 right-3 -bottom-0.5 h-[2px] origin-left rounded-full transition-transform duration-300",
             isOpen
               ? "scale-x-100 bg-gradient-brand shadow-[0_0_10px_hsl(var(--primary)/0.7)]"
-              : `scale-x-0 group-hover:scale-x-100 ${isTop ? "bg-primary shadow-[0_0_10px_hsl(var(--primary)/0.7)]" : "bg-primary/70"}`
+              : `scale-x-0 group-hover:scale-x-100 ${isTop ? "bg-primary shadow-[0_0_10px_hsl(var(--primary)/0.7)] dark:bg-white/90 dark:shadow-[0_0_10px_rgba(255,255,255,0.7)]" : "bg-primary/70"}`
           )}
         />
       </button>

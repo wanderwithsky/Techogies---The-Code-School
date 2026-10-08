@@ -67,38 +67,38 @@ function FullStackCard({ isActive, isHovered, onHover, onExplore }: { isActive: 
         <p className="mt-3 text-muted-foreground">Build modern web applications from frontend to deployment.</p>
       </div>
 
-      {/* Parallax UI Container (Always Dark) */}
+      {/* Parallax UI Container (Adapts to theme) */}
       <motion.div 
         style={{ x: xOffset, y: yOffset }}
-        className="relative z-10 flex-1 min-h-[300px] w-full rounded-xl border border-[rgba(255,255,255,0.08)] bg-[#18181B] overflow-hidden shadow-2xl"
+        className="relative z-10 flex-1 min-h-[300px] w-full rounded-xl border border-border bg-card overflow-hidden shadow-2xl"
       >
         {/* VS Code Header */}
-        <div className="flex items-center gap-2 border-b border-[rgba(255,255,255,0.08)] bg-[#232326] px-4 py-3">
+        <div className="flex items-center gap-2 border-b border-border bg-secondary px-4 py-3">
           <div className="h-3 w-3 rounded-full bg-[#ff5f56]" />
           <div className="h-3 w-3 rounded-full bg-[#ffbd2e]" />
           <div className="h-3 w-3 rounded-full bg-[#27c93f]" />
-          <div className="ml-4 flex gap-4 text-[10px] text-[#A1A1AA]">
-            <span className="text-white">server.ts</span>
+          <div className="ml-4 flex gap-4 text-[10px] text-muted-foreground">
+            <span className="text-foreground">server.ts</span>
             <span>App.tsx</span>
           </div>
         </div>
         
         <div className="flex h-[calc(100%-45px)]">
           {/* File Explorer */}
-          <div className="w-12 sm:w-16 border-r border-[rgba(255,255,255,0.08)] bg-[#1F1F22] flex flex-col items-center py-4 gap-4 text-[#A1A1AA]">
-            <Code2 size={18} className="text-white" />
+          <div className="w-12 sm:w-16 border-r border-border bg-background flex flex-col items-center py-4 gap-4 text-muted-foreground">
+            <Code2 size={18} className="text-foreground" />
             <GitBranch size={18} />
             <Server size={18} />
             <Database size={18} />
           </div>
           
           {/* Editor Content */}
-          <div className="flex-1 p-4 font-mono text-xs sm:text-sm text-[#A1A1AA] relative">
+          <div className="flex-1 p-4 font-mono text-xs sm:text-sm text-foreground relative">
             <p><span className="text-[#c678dd]">import</span> {'{'} <span className="text-[#e5c07b]">express</span> {'}'} <span className="text-[#c678dd]">from</span> <span className="text-[#98c379]">'express'</span>;</p>
             <p><span className="text-[#c678dd]">import</span> {'{'} <span className="text-[#e5c07b]">connectDB</span> {'}'} <span className="text-[#c678dd]">from</span> <span className="text-[#98c379]">'./config/db'</span>;</p>
             <br />
             <p><span className="text-[#c678dd]">const</span> <span className="text-[#e5c07b]">app</span> <span className="text-[#56b6c2]">=</span> <span className="text-[#61afef]">express</span>();</p>
-            <p className="mt-2 text-[#A1A1AA]/50">// Initialize cloud deployment</p>
+            <p className="mt-2 text-muted-foreground">// Initialize cloud deployment</p>
             <p><span className="text-[#e5c07b]">app</span>.<span className="text-[#61afef]">deploy</span>({'{'} <span className="text-[#d19a66]">region</span>: <span className="text-[#98c379]">'aws-ap-south-1'</span> {'}'});</p>
             
             {/* Floating Badges */}
@@ -200,18 +200,18 @@ function CyberSecurityCard({ isActive, isHovered, onHover, onExplore }: { isActi
         <p className="mt-3 text-muted-foreground">Learn how to secure applications, networks and digital infrastructure.</p>
       </div>
 
-      {/* Parallax UI Container (Always Dark) */}
+      {/* Parallax UI Container (Adapts to theme) */}
       <motion.div 
         style={{ x: xOffset, y: yOffset }}
-        className="relative z-10 flex-1 min-h-[300px] w-full rounded-xl border border-[rgba(255,255,255,0.08)] bg-[#18181B] overflow-hidden shadow-2xl p-4 flex flex-col gap-3"
+        className="relative z-10 flex-1 min-h-[300px] w-full rounded-xl border border-border bg-card overflow-hidden shadow-2xl p-4 flex flex-col gap-3"
       >
         {/* Top Status Bar */}
-        <div className="flex justify-between items-center bg-[#232326] rounded-lg p-3 border border-[rgba(255,255,255,0.08)]">
+        <div className="flex justify-between items-center bg-secondary rounded-lg p-3 border border-border">
           <div className="flex items-center gap-3">
-            <Shield className="text-[#FF6B00]" size={20} />
+            <Shield className="text-[color:var(--brand)]" size={20} />
             <div>
-              <div className="text-[10px] text-[#A1A1AA] uppercase tracking-widest font-bold">System Status</div>
-              <div className="text-xs text-white font-mono">Active Protection</div>
+              <div className="text-[10px] text-muted-foreground uppercase tracking-widest font-bold">System Status</div>
+              <div className="text-xs text-foreground font-mono">Active Protection</div>
             </div>
           </div>
           <div className="text-right">
@@ -222,30 +222,30 @@ function CyberSecurityCard({ isActive, isHovered, onHover, onExplore }: { isActi
 
         <div className="flex gap-3 flex-1 h-[180px]">
           {/* Terminal / Logs */}
-          <div className="flex-1 bg-[#1F1F22] rounded-lg border border-[rgba(255,255,255,0.08)] p-3 font-mono text-[10px] text-green-500/80 overflow-hidden relative">
-            <div className="text-[#A1A1AA] mb-2 border-b border-[rgba(255,255,255,0.08)] pb-1 flex justify-between">
+          <div className="flex-1 bg-background rounded-lg border border-border p-3 font-mono text-[10px] text-green-600 dark:text-green-500/80 overflow-hidden relative">
+            <div className="text-muted-foreground mb-2 border-b border-border pb-1 flex justify-between">
               <span>root@kali:~#</span>
               <Terminal size={12} />
             </div>
             <motion.div animate={isHovered ? { y: [-10, 0] } : { y: 0 }} transition={{ duration: 0.5 }}>
               <p>Starting Nmap 7.93 ( https://nmap.org )</p>
               <p className="mt-1">Initiating SYN Stealth Scan</p>
-              <p className="mt-1 text-[#A1A1AA]">Scanning 192.168.1.1 [1000 ports]</p>
-              <p className="mt-1 text-yellow-400">Discovered open port 443/tcp</p>
-              <p className="mt-1 text-yellow-400">Discovered open port 80/tcp</p>
+              <p className="mt-1 text-muted-foreground">Scanning 192.168.1.1 [1000 ports]</p>
+              <p className="mt-1 text-yellow-600 dark:text-yellow-400">Discovered open port 443/tcp</p>
+              <p className="mt-1 text-yellow-600 dark:text-yellow-400">Discovered open port 80/tcp</p>
               {isHovered && (
-                <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }} className="mt-1 text-red-400 font-bold animate-pulse">
+                <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }} className="mt-1 text-red-500 dark:text-red-400 font-bold animate-pulse">
                   [!] Vulnerability detected: CVE-2023-XXXX
                 </motion.p>
               )}
             </motion.div>
-            <div className="absolute bottom-0 left-0 right-0 h-10 bg-gradient-to-t from-[#1F1F22] to-transparent" />
+            <div className="absolute bottom-0 left-0 right-0 h-10 bg-gradient-to-t from-background to-transparent" />
           </div>
 
           {/* Network Graph */}
-          <div className="hidden sm:flex w-1/3 bg-[#1F1F22] rounded-lg border border-[rgba(255,255,255,0.08)] p-3 flex-col items-center justify-center relative overflow-hidden">
-            <Network size={24} className="text-[#A1A1AA]/50 mb-2" />
-            <div className="text-[9px] text-[#A1A1AA] uppercase tracking-widest text-center">Topology Map</div>
+          <div className="hidden sm:flex w-1/3 bg-background rounded-lg border border-border p-3 flex-col items-center justify-center relative overflow-hidden">
+            <Network size={24} className="text-muted-foreground/50 mb-2" />
+            <div className="text-[9px] text-muted-foreground uppercase tracking-widest text-center">Topology Map</div>
             
             {/* Animated Nodes */}
             <motion.div 
