@@ -27,6 +27,7 @@ export const Route = createFileRoute("/admin")({
 
 function AdminLayout() {
   const [isAuth, setIsAuth] = useState<boolean | null>(null);
+  const [isRecovery, setIsRecovery] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -36,8 +37,11 @@ function AdminLayout() {
     });
 
     // Listen for auth changes
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
       setIsAuth(!!session);
+      if (event === "PASSWORD_RECOVERY") {
+        setIsRecovery(true);
+      }
     });
 
     return () => subscription.unsubscribe();
@@ -45,6 +49,10 @@ function AdminLayout() {
 
   if (isAuth === null) {
     return <div className="flex h-screen items-center justify-center">Loading Admin...</div>;
+  }
+
+  if (isRecovery) {
+    return <PasswordUpdateForm onComplete={() => setIsRecovery(false)} />;
   }
 
   if (!isAuth) {
@@ -132,6 +140,8 @@ function AdminLogin() {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [isResetting, setIsResetting] = useState(false);
+  const [resetMessage, setResetMessage] = useState("");
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -149,43 +159,159 @@ function AdminLogin() {
     setLoading(false);
   };
 
+  const handleResetPassword = async () => {
+    if (!email) {
+      setError("Please enter your email address to reset password.");
+      return;
+    }
+    setLoading(true);
+    setError("");
+    const { error } = await supabase.auth.resetPasswordForEmail(email.trim(), {
+      redirectTo: window.location.origin + "/admin",
+    });
+
+    if (error) {
+      setError(error.message);
+    } else {
+      setResetMessage("Password reset email sent. Please check your inbox.");
+    }
+    setLoading(false);
+  };
+
   return (
     <div className="flex min-h-screen items-center justify-center bg-muted/50 px-4 py-12 sm:px-6 lg:px-8">
       <div className="w-full max-w-md space-y-8 bg-background p-8 rounded-xl shadow-lg border">
         <div>
           <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-foreground">
-            Admin Login
+            {isResetting ? "Reset Password" : "Admin Login"}
           </h2>
           <p className="mt-2 text-center text-sm text-muted-foreground">
-            Sign in to access the Techogies dashboard
+            {isResetting ? "Enter your email to receive a reset link" : "Sign in to access the Techogies dashboard"}
           </p>
         </div>
-        <form className="mt-8 space-y-6" onSubmit={handleLogin}>
+        
+        {resetMessage ? (
+          <div className="rounded-md bg-green-50 p-4 mt-4">
+            <p className="text-sm font-medium text-green-800">{resetMessage}</p>
+            <button 
+              onClick={() => { setIsResetting(false); setResetMessage(""); }}
+              className="mt-3 text-sm text-green-700 underline"
+            >
+              Back to login
+            </button>
+          </div>
+        ) : (
+          <form className="mt-8 space-y-6" onSubmit={isResetting ? (e) => { e.preventDefault(); handleResetPassword(); } : handleLogin}>
+            <div className="space-y-4 rounded-md shadow-sm">
+              <div>
+                <label className="sr-only" htmlFor="email-address">Email address</label>
+                <input
+                  id="email-address"
+                  name="email"
+                  type="email"
+                  autoComplete="email"
+                  required
+                  className="relative block w-full rounded-md border-0 py-2.5 px-3 text-foreground ring-1 ring-inset ring-input placeholder:text-muted-foreground focus:z-10 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
+                  placeholder="Email address"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
+              {!isResetting && (
+                <div>
+                  <label className="sr-only" htmlFor="password">Password</label>
+                  <input
+                    id="password"
+                    name="password"
+                    type="password"
+                    autoComplete="current-password"
+                    required
+                    className="relative block w-full rounded-md border-0 py-2.5 px-3 text-foreground ring-1 ring-inset ring-input placeholder:text-muted-foreground focus:z-10 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                </div>
+              )}
+            </div>
+
+            {error && (
+              <div className="text-sm text-destructive text-center font-medium">
+                {error}
+              </div>
+            )}
+
+            <div className="flex flex-col gap-3">
+              <button
+                type="submit"
+                disabled={loading}
+                className="group relative flex w-full justify-center rounded-md bg-primary px-3 py-2.5 text-sm font-semibold text-primary-foreground hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:opacity-50"
+              >
+                {loading ? (isResetting ? "Sending..." : "Signing in...") : (isResetting ? "Send Reset Link" : "Sign in")}
+              </button>
+              
+              <button
+                type="button"
+                onClick={() => {
+                  setIsResetting(!isResetting);
+                  setError("");
+                }}
+                className="text-sm text-muted-foreground hover:text-primary transition-colors"
+              >
+                {isResetting ? "Back to login" : "Forgot your password?"}
+              </button>
+            </div>
+          </form>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function PasswordUpdateForm({ onComplete }: { onComplete: () => void }) {
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const handleUpdate = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setError("");
+
+    const { error } = await supabase.auth.updateUser({
+      password: password,
+    });
+
+    if (error) {
+      setError(error.message);
+    } else {
+      onComplete();
+    }
+    setLoading(false);
+  };
+
+  return (
+    <div className="flex min-h-screen items-center justify-center bg-muted/50 px-4 py-12 sm:px-6 lg:px-8">
+      <div className="w-full max-w-md space-y-8 bg-background p-8 rounded-xl shadow-lg border">
+        <div>
+          <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-foreground">
+            Update Password
+          </h2>
+          <p className="mt-2 text-center text-sm text-muted-foreground">
+            Please enter your new password below.
+          </p>
+        </div>
+        <form className="mt-8 space-y-6" onSubmit={handleUpdate}>
           <div className="space-y-4 rounded-md shadow-sm">
             <div>
-              <label className="sr-only" htmlFor="email-address">Email address</label>
+              <label className="sr-only" htmlFor="new-password">New Password</label>
               <input
-                id="email-address"
-                name="email"
-                type="email"
-                autoComplete="email"
-                required
-                className="relative block w-full rounded-md border-0 py-2.5 px-3 text-foreground ring-1 ring-inset ring-input placeholder:text-muted-foreground focus:z-10 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
-                placeholder="Email address"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-            <div>
-              <label className="sr-only" htmlFor="password">Password</label>
-              <input
-                id="password"
+                id="new-password"
                 name="password"
                 type="password"
-                autoComplete="current-password"
                 required
                 className="relative block w-full rounded-md border-0 py-2.5 px-3 text-foreground ring-1 ring-inset ring-input placeholder:text-muted-foreground focus:z-10 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
-                placeholder="Password"
+                placeholder="New Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
@@ -204,7 +330,7 @@ function AdminLogin() {
               disabled={loading}
               className="group relative flex w-full justify-center rounded-md bg-primary px-3 py-2.5 text-sm font-semibold text-primary-foreground hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:opacity-50"
             >
-              {loading ? "Signing in..." : "Sign in"}
+              {loading ? "Updating..." : "Update Password"}
             </button>
           </div>
         </form>
