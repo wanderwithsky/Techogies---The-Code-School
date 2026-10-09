@@ -139,7 +139,7 @@ function AdminLogin() {
     setError("");
 
     const { error } = await supabase.auth.signInWithPassword({
-      email,
+      email: email.trim(),
       password,
     });
 
